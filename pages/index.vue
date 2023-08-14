@@ -35,12 +35,12 @@
    
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { useFood } from '../store/foodStore'
 
 const isModalVisible = ref(false);
-const sliderRef:any = ref(null)
-const foodStore:any = useFood()
+const sliderRef = ref(null)
+const foodStore = useFood()
 foodStore.fetch()
 
 function moveSlider() {
