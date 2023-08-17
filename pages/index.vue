@@ -1,7 +1,7 @@
 <template>
     <div class="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 overflow-hidden max-w-7xl mx-auto">
-        <div @click="foodStore.savePrice(item.price)" v-for="item in foodStore.getFilteredFood">
-            <Card @click="moveSlider()" :item="item" />
+        <div @click.prevent="foodStore.savePrice(item.price)" v-for="item in foodStore.getFilteredFood" :key="item.id">
+            <Card @click.prevent="moveSlider()" :item="item" />
         </div>
     </div>
 
@@ -28,19 +28,18 @@
         </div>
     </div>
 
-    <Modal :visible="isModalVisible" :close="closeModal" :confirm="handlePurchase"  />
+    <LazyModal :visible="isModalVisible" :close="closeModal" :confirm="handlePurchase"  />
 
    
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useFood } from '../store/foodStore'
-
+import { useFood } from "../store/foodStore"
 const isModalVisible = ref(false);
 const sliderRef = ref<HTMLElement | null>(null);
 const foodStore = useFood()
 foodStore.fetch()
+
 
 function moveSlider() {
     if (!foodStore.isSliderOpen  && sliderRef.value) {
@@ -81,9 +80,10 @@ function handlePurchase() {
 }
 
 
-// watch(() => foodStore.inputValue, (newValue) => console.log(`newValue is ${newValue}`))
-// watch(() => foodStore.inputValue , () => console.log(foodStore.inputValue))
-// watch(() => foodStore.price , () => console.log(foodStore.price))
+// watch(() => foodStore.inputValue, (newValue) => {
+//   console.log(`newValue is ${newValue}`);
+// });
+
 </script>
 
 

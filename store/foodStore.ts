@@ -10,7 +10,7 @@ interface FoodItem {
 interface FoodStoreState {
   food: FoodItem[];
   isLoading: boolean;
-  inputValue: "";
+  inputValue: string;
   quantity: number;
   price: number;
   totalPrice: number;
@@ -33,9 +33,9 @@ export const useFood = defineStore("foodStore", {
       let food = state.food;
 
       if (state.inputValue) {
-        food = food.filter((plate) =>
-          plate.title.toLowerCase().includes(state.inputValue.toLowerCase())
-        );
+        food = food.filter(plate => {
+          return  plate.title.toLowerCase().includes(state.inputValue.toLowerCase())
+      });
       }
 
       return food;
