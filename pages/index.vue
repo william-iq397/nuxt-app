@@ -1,11 +1,9 @@
 <template>
-    <div
-        class="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 overflow-hidden max-w-7xl mx-auto">
+    <div class="grid place-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12 overflow-hidden max-w-7xl mx-auto">
         <div @click="foodStore.savePrice(item.price)" v-for="item in foodStore.getFilteredFood">
             <Card @click="moveSlider()" :item="item" />
         </div>
     </div>
-
 
     <!-- SLIDER -->
     <div ref="sliderRef" class="text-white bg-gray-700 opacity-90  w-full xl:w-1/3 h-max fixed transition-all top-0 right-[-100%] p-8">
@@ -35,23 +33,24 @@
    
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, watch } from 'vue';
 import { useFood } from '../store/foodStore'
 
 const isModalVisible = ref(false);
-const sliderRef = ref(null)
+const sliderRef = ref<HTMLElement | null>(null);
 const foodStore = useFood()
 foodStore.fetch()
 
 function moveSlider() {
-    if (!foodStore.isSliderOpen) {
+    if (!foodStore.isSliderOpen  && sliderRef.value) {
         sliderRef.value.style.right = "0%"
         foodStore.isSliderOpen = true
     }
 }
-const justHassan = 'Hassan'
+
 function removeSlider() {
-    if (foodStore.isSliderOpen) {
+    if (foodStore.isSliderOpen  && sliderRef.value) {
         sliderRef.value.style.right = "-100%"
         foodStore.isSliderOpen = false
     }
@@ -82,7 +81,7 @@ function handlePurchase() {
 }
 
 
-watch(() => foodStore.price, () => foodStore.totalPrice = foodStore.price)
+// watch(() => foodStore.inputValue, (newValue) => console.log(`newValue is ${newValue}`))
 // watch(() => foodStore.inputValue , () => console.log(foodStore.inputValue))
 // watch(() => foodStore.price , () => console.log(foodStore.price))
 </script>
