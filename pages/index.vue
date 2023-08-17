@@ -49,7 +49,7 @@ function moveSlider() {
         foodStore.isSliderOpen = true
     }
 }
-
+const justHassan = 'Hassan'
 function removeSlider() {
     if (foodStore.isSliderOpen) {
         sliderRef.value.style.right = "-100%"
