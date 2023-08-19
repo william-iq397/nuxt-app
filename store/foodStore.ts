@@ -7,8 +7,18 @@ interface FoodItem {
   // Add other properties of a food item
 }
 
+interface Order {
+  id: number;
+  orderTitle: string;
+  orderQuantity: number;
+  totalPrice: number;
+}
+
 interface FoodStoreState {
   food: FoodItem[];
+  orders: Order[];
+  title: string;
+  orderTitle: string;
   isLoading: boolean;
   inputValue: string;
   quantity: number;
@@ -20,7 +30,10 @@ interface FoodStoreState {
 export const useFood = defineStore("foodStore", {
   state: (): FoodStoreState => ({
     food: [],
+    orders: [],
+    title: "",
     isLoading: false,
+    orderTitle: "",
     inputValue: "",
     quantity: 1,
     price: 0,
@@ -49,22 +62,10 @@ export const useFood = defineStore("foodStore", {
       this.food = data.value as FoodItem[];
     },
 
-    async callData() {
-      console.log(this.price);
-    },
-
-    async savePrice(price: number) {
+    async savePrice(price: number, title: string) {
       this.price = price;
-    },
-
-    async increment() {
-      this.quantity++;
-      this.totalPrice = this.price * this.quantity;
-    },
-
-    async decrement() {
-      this.quantity--;
-      this.totalPrice = this.price * this.quantity;
+      this.title = title;
+      this.orderTitle = this.title
     },
   },
 });
