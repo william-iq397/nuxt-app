@@ -34,7 +34,7 @@
                 </div>
 
                 
-                
+                <!-- bottom of the slider -->
                 <div class="absolute bottom-5 right-0 left-0">
                     <div class="mx-auto text-3xl my-8 text-center">
                         Total Price : {{ foodStore.totalPrice.toString().slice(0, 5) }}
