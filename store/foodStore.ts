@@ -65,7 +65,7 @@ export const useFood = defineStore("foodStore", {
     async savePrice(price: number, title: string) {
       this.price = price;
       this.title = title;
-      this.orderTitle = this.title
+      this.orderTitle = title
     },
   },
 });
