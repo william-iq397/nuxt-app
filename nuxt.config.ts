@@ -2,6 +2,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+       '@chakra-ui/nuxt',
+    '@nuxtjs/emotion'
   ],
 
   imports: {
