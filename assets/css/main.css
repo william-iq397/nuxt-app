@@ -31,3 +31,75 @@ p, label {
 button, input {
   @apply text-base  lg:text-lg xl:text-xl;
 }
+
+/* Base Styles */
+h2 {
+  @apply text-4xl;
+}
+h3 {
+  @apply text-3xl;
+}
+h4 {
+  @apply text-2xl;
+}
+h5 {
+  @apply text-xl;
+}
+h6 {
+  @apply text-lg;
+}
+
+/* Responsive Styles */
+@media (min-width: 640px) { /* sm */
+  h2 {
+    @apply text-5xl;
+  }
+  h3 {
+    @apply text-4xl;
+  }
+  h4 {
+    @apply text-3xl;
+  }
+  h5 {
+    @apply text-2xl;
+  }
+  h6 {
+    @apply text-xl;
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  h2 {
+    @apply text-6xl;
+  }
+  h3 {
+    @apply text-5xl;
+  }
+  h4 {
+    @apply text-4xl;
+  }
+  h5 {
+    @apply text-3xl;
+  }
+  h6 {
+    @apply text-2xl;
+  }
+}
+
+@media (min-width: 1024px) { /* lg */
+  h2 {
+    @apply text-7xl;
+  }
+  h3 {
+    @apply text-6xl;
+  }
+  h4 {
+    @apply text-5xl;
+  }
+  h5 {
+    @apply text-4xl;
+  }
+  h6 {
+    @apply text-3xl;
+  }
+}

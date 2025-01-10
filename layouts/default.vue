@@ -1,11 +1,12 @@
 <template>
     <div class="h-full w-full font-sans">
-        <main class="font-sans w-full h-full flex justify-between">         
+        <main class="font-sans w-full h-full flex">
             <slot />
-            <SideBar v-if="isLoginPage" />
+            <SideBar v-if="isLoginPage" class="sticky top-0 min-h-screen" />
         </main>
     </div>
 </template>
+
 
 <script setup>
 import { useRoute } from 'vue-router';
@@ -17,9 +18,10 @@ const isLoginPage = route.path !== "/login"
 </script>
 
 <style>
-html, body, #__nuxt {
+html,
+body,
+#__nuxt {
     width: 100%;
     height: 100%;
 }
-
 </style>
