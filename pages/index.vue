@@ -15,7 +15,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup layout="default">
 import PieChart from '~/components/PieChart.vue';
 import StudentsCounter from '~/components/StudentsCounter.vue';
 

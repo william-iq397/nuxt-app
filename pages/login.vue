@@ -30,7 +30,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup layout="login">
 
 import { useRouter } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
@@ -42,12 +42,9 @@ const password = ref('');
 
 // Reactive computed property for auth state
 const isUserLoginIn = computed(() => pb.authStore.isValid);
-console.log(pb.authStore)
 
 
 const router = useRouter();
-// const email = ref('');
-// const password = ref('');
 const error = ref('');
 
 const handleLogin = async () => {
@@ -65,9 +62,5 @@ const handleLogin = async () => {
     }
 };
 
-function logout() {
-    pb.authStore.clear();
-    route.push('/')
-}
 
 </script>

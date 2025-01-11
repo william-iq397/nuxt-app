@@ -12,11 +12,13 @@
                 <Icon name="oui:search" size="24" color="white"/>
                 <input type="text" placeholder="Search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" />
             </div>
-            <div v-for="link in links" class="sidebar-item p-2.5 mt-3 flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white" >
-                <Icon :name="link.icon" color='white' />
-                <NuxtLink :to="link.link"><span class="text-[15px] ml-4 text-gray-200 font-bold">{{ link.text }}</span></NuxtLink>
-            </div>
-            <div class="sidebar-item p-2.5 mt-auto flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white">
+            <NuxtLink v-for="link in links" :to="link.link">    
+                <div class="sidebar-item p-2.5 mt-3 flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white" >
+                    <Icon :name="link.icon" color='white' />
+                    <span class="text-[15px] ml-4 text-gray-200 font-bold">{{ link.text }}</span>
+                </div>
+            </NuxtLink>
+            <div @click="logout" class="sidebar-item p-2.5 mt-auto flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white">
                 <Icon name="ph:sign-out-light" color='white' />
                 <span class="text-[15px] ml-4 text-gray-200 font-bold">تسجيل الخروج</span>
             </div>
@@ -31,6 +33,18 @@
 </template>
 
 <script setup>
+import { usePocketbase } from '~/pocketbase';
+import {useRouter} from 'vue-router'
+
+const pb = usePocketbase()
+const route = useRouter()
+
+function logout() {
+    pb.authStore.clear()
+    route.push('/')
+    console.log("logged out")
+}
+
 const links = [
     {
         link: "/",
@@ -48,7 +62,7 @@ const links = [
         text: "الاساتذة",
     },
     {
-        link: "/",
+        link: "/accountant",
         icon: "material-symbols:person-rounded" ,
         text: "الحسابات",
     },

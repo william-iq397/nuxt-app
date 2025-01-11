@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-sans;
-}
 
 /* assets/css/global.css */
 

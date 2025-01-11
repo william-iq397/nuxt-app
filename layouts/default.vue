@@ -1,6 +1,6 @@
 <template>
-    <div class="h-full w-full font-sans">
-        <main class="font-sans w-full h-full flex">
+    <div class="h-full w-full font-sans bg-offwhite">
+        <main class="font-sans w-full h-full flex justify-between">
             <slot />
             <SideBar v-if="isLoginPage" class="sticky top-0 min-h-screen" />
         </main>
@@ -11,6 +11,11 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
+import { useStudents } from '~/store/useStore';
+
+const route = useRoute()
+const store = useStudents()
+
 
 const appConfig = useAppConfig()
 const pb = usePocketbase()
@@ -21,7 +26,6 @@ onMounted(() => {
   }
 })
 
-const route = useRoute()
 const isLoginPage = route.path !== "/login"
 
 

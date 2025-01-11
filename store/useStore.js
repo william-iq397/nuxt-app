@@ -1,6 +1,10 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
 export const useStudents = defineStore("useStudents", {
     state: () => ({
+        pages: {
+            "/": "الرئيسية",
+            accountant: "الحسابات",
+        },
         studentsRequests: [],
         students: [],
            student: {
