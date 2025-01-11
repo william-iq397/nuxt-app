@@ -10,6 +10,16 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
+import { usePocketbase } from '~/pocketbase';
+
+const appConfig = useAppConfig()
+const pb = usePocketbase()
+onMounted(() => {
+  const url = window.location.host
+  if (!url.includes('localhost')) {
+    pb.baseUrl = "https://" + url
+  }
+})
 
 const route = useRoute()
 const isLoginPage = route.path !== "/login"

@@ -1,6 +1,9 @@
-import PocketBase from 'pocketbase';
+import PocketBase from 'pocketbase'
 
-// change the paramater when you host it
-const pb = new PocketBase('http://127.0.0.1:8090');
+const appConfig = useAppConfig()
+const pb = new PocketBase(appConfig.pocketbase.url)
+pb.autoCancellation(false);
 
-export default pb;
+export const usePocketbase = () => {
+    return pb
+}

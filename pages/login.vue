@@ -11,7 +11,7 @@
                 <img src="../Images/label.svg" alt="educatoin logo" class="w-1/2 h-full">
             </div>
             <!-- form right side -->
-            <form @submit.prevent="login" class="flex flex-col justify-between items-center space-y-8 w-3/4">
+            <form @submit.prevent="handleLogin" class="flex flex-col justify-between items-center space-y-8 w-3/4">
                 <h1 class=" my-2">تسجيل الدخول</h1>
                 <p class=" text-right my-2 w-5/6">يجيب ان يكون لك اسم مستخدم و كلمة مرور حتى تستطيع تسجيل الدخول</p>
                 <div class="flex flex-col space-y-4 my-2">
@@ -31,9 +31,11 @@
 </template>
 
 <script setup>
-import pb from '~/pocketbase';
-import { useRouter } from 'vue-router';
 
+import { useRouter } from 'vue-router';
+import { usePocketbase } from '~/pocketbase';
+
+const pb = usePocketbase()
 const route = useRouter()
 const useremail = ref('');
 const password = ref('');
@@ -42,23 +44,30 @@ const password = ref('');
 const isUserLoginIn = computed(() => pb.authStore.isValid);
 console.log(pb.authStore)
 
+
+const router = useRouter();
+// const email = ref('');
+// const password = ref('');
+const error = ref('');
+
+const handleLogin = async () => {
+
+    try {
+        pb.cancelAllRequests()
+        const authData = await pb.collection('users').authWithPassword(useremail.value, password.value);
+        
+        console.log('Login successful:', authData);
+
+        // Redirect to another page
+        router.push('/');
+    } catch (err) {
+        error.value = err.message || 'An error occurred during login.';
+    }
+};
+
 function logout() {
     pb.authStore.clear();
     route.push('/')
-}
-
-
-async function login() {
-    try {
-        const authData = await pb.collection('users').authWithPassword(
-                useremail.value,
-                password.value
-            )
-            route.push('/')
-    } catch (e) {
-            console.log(e)
-    }
-    console.log("login confirmed")
 }
 
 </script>
