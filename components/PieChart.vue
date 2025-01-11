@@ -27,10 +27,10 @@ const props = defineProps({
 const chartStyle = computed(() => {
   return {
     background: `conic-gradient(
-      blue 0%,
-      blue ${props.menPercentage}%,
-      pink ${props.menPercentage}%,
-      pink ${props.menPercentage + props.womenPercentage}%
+      #3E3CFF 0%,
+      #3E3CFF ${props.menPercentage}%,
+      #A6A5FF ${props.menPercentage}%,
+      #A6A5FF ${props.menPercentage + props.womenPercentage}%
     )`,
   };
 });

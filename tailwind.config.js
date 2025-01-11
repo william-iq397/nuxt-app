@@ -15,6 +15,13 @@ module.exports = {
           offwhite: '#F0F0F0', // off white
           secondary: '#ffed4a', // Yellow
           danger: '#e3342f', // Red
+          darkgray: '#515151',
+          pink: '#CF6EFC',
+          purple: '#540878',
+          blue: '#3E3CFF',
+        },
+        fontFamily: {
+          sans: ['Cairo']
         },
     },
   },

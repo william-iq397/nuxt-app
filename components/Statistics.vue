@@ -1,40 +1,39 @@
 <template>
     <div class="statistics-container">
-      <div v-for="(stat, index) in statistics" :key="index" class="stat-card">
-        <div>
-          <Icon :name="stat.icon" class="stat-icon" />
-        </div>
+      <div v-for="(stat, index) in statistics" :key="index" class="stat-card flex ">
         <div class="details">
           <p class="stat-number">{{ stat.count }}</p>
           <p class="stat-label">{{ stat.label }}</p>
+        </div>
+        <div>
+          <Icon :name="stat.icon" class="stat-icon" />
         </div>
       </div>
     </div>
   </template>
   
   <script setup>
-  import { ref } from 'vue';
   
   const statistics = ref([
     {
       label: 'Total People',
       count: 150,
-      icon: 'mdi-account-group',
+      icon: 'ri:graduation-cap-line',
     },
     {
       label: 'Teachers',
       count: 25,
-      icon: 'mdi-teach',
+      icon: 'uil:bag',
     },
     {
       label: 'Students Paid',
       count: 100,
-      icon: 'mdi-cash-check',
+      icon: 'humbleicons:currency-dollar-circle',
     },
     {
       label: 'Students Unpaid',
       count: 25,
-      icon: 'mdi-cash-remove',
+      icon: 'bitcoin-icons:no-dollars-outline',
     },
   ]);
   </script>
@@ -50,11 +49,10 @@
   
   .stat-card {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-    width: 150px;
+    padding: 10px;
+    width: 120px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

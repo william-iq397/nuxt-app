@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full w-full font-sans bg-offwhite">
+    <div class="h-full w-full font-sans">
         <main class="font-sans w-full h-full flex justify-between">
             <slot />
             <SideBar v-if="isLoginPage" class="sticky top-0 min-h-screen" />

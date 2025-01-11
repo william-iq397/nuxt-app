@@ -1,6 +1,6 @@
 <template>
-    <div class="flex flex-col w-full h-full font-semibold">
-        <h5 class="p-2 text-right">صفحة الحسابات</h5>
+    <div class="flex flex-col w-full h-full font-semibold accountant">
+        <h3 class="p-2 text-right">صفحة الحسابات</h3>
 
         <StudentsStatistics/>
         <AccountantTable/>

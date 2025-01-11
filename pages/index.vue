@@ -1,8 +1,8 @@
 <template>
-    <div class="w-full flex  gap-4 min-h-[70rem] bg-offwhite text-right">
+    <div class="w-full h-full flex  gap-4  text-right">
         <div class="w-fit">
             <NuxtLink to="/login">go to auth</NuxtLink>
-            <PieChart menPercentage=24 womenPercenta=76 />
+            <BarChart />
         </div>
         <div class="w-full flex flex-col justify-start gap-4 ">
             <Statistics />
@@ -16,6 +16,7 @@
 </template>
 
 <script setup layout="default">
+import BarChart from '~/components/BarChart.vue';
 import PieChart from '~/components/PieChart.vue';
 import StudentsCounter from '~/components/StudentsCounter.vue';
 

@@ -1,10 +1,10 @@
 <template>
-    <div class="font-sans h-screen">
-        <div class="flex flex-col h-full p-2 w-[300px]  text-center bg-gray-900">
-            <div class="sidebar-item text-gray-100 text-xl">
-                <div class="p-2.5 mt-1 flex items-center flex-row-reverse hover:bg-primary gap-4">
+    <div class="font-sans h-screen text-darkgray">
+        <div class="flex flex-col h-full p-2 w-[250px] text-center">
+            <div class="sidebar-item text-xl">
+                <div class="p-2.5 mt-1 flex items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-4">
                     <Icon name="heroicons-solid:academic-cap" size="24"/>
-                    <h1 class="font-bold text-gray-200 text-[15px] ml-3">TailwindCSS</h1>
+                    <h1 class="font-bold text-[15px] ml-3">TailwindCSS</h1>
                 </div>
                 <div class="my-2 bg-gray-600 h-[1px]"></div>
             </div>
@@ -13,9 +13,9 @@
                 <input type="text" placeholder="Search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" />
             </div>
             <NuxtLink v-for="link in links" :to="link.link">    
-                <div class="sidebar-item p-2.5 mt-3 flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white" >
+                <div class="sidebar-item p-2.5 mt-3 flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer" >
                     <Icon :name="link.icon" color='white' />
-                    <span class="text-[15px] ml-4 text-gray-200 font-bold">{{ link.text }}</span>
+                    <span class="text-[15px] ml-4 font-bold">{{ link.text }}</span>
                 </div>
             </NuxtLink>
             <div @click="logout" class="sidebar-item p-2.5 mt-auto flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white">
