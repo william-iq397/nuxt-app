@@ -1,10 +1,9 @@
 <template>
-  <div class="h-full w-full font-sans">
+  <div class="h-full w-full">
       <main class="font-sans w-full h-full flex">
-
-
+         <div id="linear-bg"></div>
           <slot />
-          <div class="h-screen relative w-[300px] ">
+          <div class="h-screen relative w-[300px]">
               <SideBar v-if="isLoginPage" class="sidebar"/>
           </div>
       </main>

@@ -2,7 +2,7 @@
     <div class="bg-gray-100 p-3 ml-3 rounded-lg shadow-md">
       <!-- Title and Year -->
       <div class="flex justify-between items-center mb-4">
-        <h2 class="text-lg font-bold text-gray-700">2024</h2>
+        <h2 class="text-lg font-bold text-gray-700">{{ currentYear }}</h2>
         <h3 class="text-gray-600">نسبة المدرسة لصفوف المنتهيه</h3>
       </div>
   
@@ -26,16 +26,16 @@
       <div class="relative flex flex-col items-start">
         <!-- Y-Axis -->
         <div class="flex flex-col justify-between items-start text-gray-500 text-sm">
-          <span class="relative">100%<span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span> 
-          <span class="relative">90% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">80% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">70% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">60% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">50% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">40% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">30% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">20% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
-          <span class="relative">10% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">__________________________</span></span>
+          <span class="relative">100%<span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span> 
+          <span class="relative">90% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">80% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">70% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">60% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">50% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">40% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">30% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">20% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
+          <span class="relative">10% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
         </div>
   
         <!-- Bars -->
@@ -48,13 +48,6 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    name: "BarChart",
-  };
-  </script>
-  
-  <style scoped>
-  /* You can add custom styles here if needed */
-  </style>
-  
+<script setup>
+const currentYear = ref(new Date().getFullYear())
+</script>

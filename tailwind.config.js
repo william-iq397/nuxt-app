@@ -20,9 +20,6 @@ module.exports = {
           purple: '#540878',
           blue: '#3E3CFF',
         },
-        fontFamily: {
-          sans: ['Cairo']
-        },
     },
   },
 

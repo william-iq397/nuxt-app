@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full flex  gap-4  text-right">
+    <div class="w-full h-full flex gap-4 text-right">
         <div class="w-fit">
             <NuxtLink to="/login">go to auth</NuxtLink>
             <BarChart />

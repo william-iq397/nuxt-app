@@ -1,6 +1,6 @@
 <template>
-    <div class="font-sans text-darkgray select-none">
-        <div class="flex flex-col gap-2 h-screen p-2 w-[240px] text-center">
+    <div class="font-sans text-darkgray select-none w-[250px]">
+        <div class="flex flex-col gap-2 h-screen p-2  text-center">
             <div class="sidebar-item text-xl">
                 <div class=" mt-1 flex items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-4">
                     <Icon name="heroicons-solid:academic-cap" size="24"/>
@@ -82,7 +82,7 @@ const links = [
         text: "الخريجين",
     },
     {
-        link: "/",
+        link: "/thesearch",
         icon: "material-symbols:person-rounded" ,
         text: "البحث",
     },

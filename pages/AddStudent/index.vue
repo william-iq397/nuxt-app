@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full flex flex-col justify-start mx-2">
+    <div class="w-full  flex flex-col justify-start mx-2">
         <StudentInformation/>
         <MotherInformation/>
         <ParentInformation/>

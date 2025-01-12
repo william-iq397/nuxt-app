@@ -2,9 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap'); */
+
 /* assets/css/global.css */
 
-body {
+html {
+    position: relative;
+}
+
+html * {
+    font-family: 'Cairo', 'Sour Gummy', serif;
+    font-weight: 300;
+}
+
+#linear-bg {
     background: linear-gradient(
         to bottom right,
         rgba(173, 216, 230, 0.4), /* Light Blue at top left */
@@ -12,8 +23,12 @@ body {
         rgba(173, 216, 230, 0.4)  /* Light Blue at bottom right */
             
     );
-
-    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 h1 {
