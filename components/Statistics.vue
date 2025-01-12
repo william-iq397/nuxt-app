@@ -1,12 +1,12 @@
 <template>
     <div class="statistics-container">
       <div v-for="(stat, index) in statistics" :key="index" class="stat-card flex ">
-        <div class="details">
+        <div class="details flex flex-col">
           <p class="stat-number">{{ stat.count }}</p>
-          <p class="stat-label">{{ stat.label }}</p>
+          <h6 class="stat-label">{{ stat.label }}</h6>
         </div>
         <div>
-          <Icon :name="stat.icon" class="stat-icon" />
+          <Icon :name="stat.icon" class="stat-icon text-primary" />
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    width: 120px;
+    width: 160px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -70,7 +70,6 @@
   
   .stat-icon {
     font-size: 3rem;
-    color: #4caf50; /* Adjust icon color */
   }
   
   .details {
@@ -83,7 +82,6 @@
   }
   
   .stat-label {
-    font-size: 1rem;
     color: #555;
   }
   </style>

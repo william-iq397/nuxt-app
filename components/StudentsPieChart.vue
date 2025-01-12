@@ -7,11 +7,11 @@
             <div class="flex flex-col justify-start items-end gap-1">
                 <div class="flex justify-between items-center w-48">
                     <p class="text-base 2xl:text-lg">نسبة الطلاب</p>
-                    <div class="w-10 h-6 bg-pink-500 rounded-lg"></div>
+                    <div class="w-10 h-6 bg-pink rounded-lg"></div>
                 </div>
                 <div class="flex justify-between items-center gap-2 w-48">
                     <p class="text-lg 2xl:text-lg">نسبة الطالبات</p>
-                    <div class="w-10 h-6 bg-pink-500 rounded-lg"></div>
+                    <div class="w-10 h-6 bg-pink rounded-lg"></div>
                 </div>
             </div>
         </div>

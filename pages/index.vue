@@ -4,8 +4,9 @@
             <NuxtLink to="/login">go to auth</NuxtLink>
             <BarChart />
         </div>
-        <div class="w-full flex flex-col justify-start gap-4 ">
+        <div class="w-full flex flex-col justify-start gap-8 ">
             <Statistics />
+            <RegisterSection/>
             <div class="flex justify-between gap-4 w-full ">
                 <StudentsPieChart />
                 <TeachersPieChart />
@@ -18,6 +19,5 @@
 <script setup layout="default">
 import BarChart from '~/components/BarChart.vue';
 import PieChart from '~/components/PieChart.vue';
-import StudentsCounter from '~/components/StudentsCounter.vue';
-
+import RegisterSection from '~/components/RegisterSection.vue';
 </script>

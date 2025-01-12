@@ -1,5 +1,5 @@
 <template>
-    <div class="font-sans h-screen text-darkgray">
+    <div class="font-sans h-screen text-darkgray select-none">
         <div class="flex flex-col h-full p-2 w-[250px] text-center">
             <div class="sidebar-item text-xl">
                 <div class="p-2.5 mt-1 flex items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-4">
@@ -18,9 +18,9 @@
                     <span class="text-[15px] ml-4 font-bold">{{ link.text }}</span>
                 </div>
             </NuxtLink>
-            <div @click="logout" class="sidebar-item p-2.5 mt-auto flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer text-white">
+            <div @click="logout" class="sidebar-item p-2.5 mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
                 <Icon name="ph:sign-out-light" color='white' />
-                <span class="text-[15px] ml-4 text-gray-200 font-bold">تسجيل الخروج</span>
+                <span class="text-[15px] ml-4 font-bold">تسجيل الخروج</span>
             </div>
 
         <!-- <button @click="handleswipe" class="flex flex-col gap-1 cursor-pointer absolute top-10 -left-10 bg-white rounded-md">
@@ -67,7 +67,7 @@ const links = [
         text: "الحسابات",
     },
     {
-        link: "/",
+        link: "/addstudent",
         icon: "material-symbols:person-rounded" ,
         text: "اضافة طالب",
     },
@@ -75,6 +75,16 @@ const links = [
         link: "/",
         icon: "material-symbols:person-rounded" ,
         text: "اضافة استاذ",
+    },
+    {
+        link: "/",
+        icon: "material-symbols:person-rounded" ,
+        text: "الخريجين",
+    },
+    {
+        link: "/",
+        icon: "material-symbols:person-rounded" ,
+        text: "البحث",
     },
 ]
 </script>
