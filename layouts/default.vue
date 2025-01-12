@@ -1,11 +1,14 @@
 <template>
-    <div class="h-full w-full font-sans">
-        <main class="font-sans w-full h-full flex justify-between">
-            <slot />
-            <SideBar v-if="isLoginPage" class="sticky top-0 min-h-screen" />
-        </main>
-    </div>
+  <div class="h-full w-full font-sans">
+      <main class="font-sans w-full h-full flex">
+          <slot />
+          <div class="h-screen relative w-[300px] ">
+              <SideBar v-if="isLoginPage" class="sidebar" />
+          </div>
+      </main>
+  </div>
 </template>
+
 
 
 <script setup>
@@ -37,5 +40,11 @@ body,
 #__nuxt {
     width: 100%;
     height: 100%;
+}
+
+
+.sidebar {
+  position: fixed;
+  right: 0;
 }
 </style>

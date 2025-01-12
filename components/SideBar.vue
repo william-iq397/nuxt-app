@@ -1,5 +1,5 @@
 <template>
-    <div class="font-sans h-screen text-darkgray select-none">
+    <div class="font-sans text-darkgray select-none">
         <div class="flex flex-col h-full p-2 w-[250px] text-center">
             <div class="sidebar-item text-xl">
                 <div class="p-2.5 mt-1 flex items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-4">

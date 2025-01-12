@@ -8,7 +8,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup layout="default">
 import StudentInformation from '~/components/AddStudentForm/StudentInformation.vue';
 import MotherInformation from '~/components/AddStudentForm/MotherInformation.vue';
 import ParentInformation from '~/components/AddStudentForm/ParentInformation.vue';
