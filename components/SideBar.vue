@@ -1,24 +1,24 @@
 <template>
     <div class="font-sans text-darkgray select-none">
-        <div class="flex flex-col h-full p-2 w-[250px] text-center">
+        <div class="flex flex-col gap-2 h-screen p-2 w-[240px] text-center">
             <div class="sidebar-item text-xl">
-                <div class="p-2.5 mt-1 flex items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-4">
+                <div class=" mt-1 flex items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-4">
                     <Icon name="heroicons-solid:academic-cap" size="24"/>
                     <h1 class="font-bold text-[15px] ml-3">TailwindCSS</h1>
                 </div>
                 <div class="my-2 bg-gray-600 h-[1px]"></div>
             </div>
-            <div class="sidebar-item p-2.5 flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white">
+            <div class="sidebar-item  flex items-center flex-row-reverse hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white">
                 <Icon name="oui:search" size="24" color="white"/>
                 <input type="text" placeholder="Search" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" />
             </div>
             <NuxtLink v-for="link in links" :to="link.link">    
-                <div class="sidebar-item p-2.5 mt-3 flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer" >
+                <div class="sidebar-item  flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer" >
                     <Icon :name="link.icon" color='white' />
                     <span class="text-[15px] ml-4 font-bold">{{ link.text }}</span>
                 </div>
             </NuxtLink>
-            <div @click="logout" class="sidebar-item p-2.5 mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
+            <div @click="logout" class="sidebar-item  mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
                 <Icon name="ph:sign-out-light" color='white' />
                 <span class="text-[15px] ml-4 font-bold">تسجيل الخروج</span>
             </div>

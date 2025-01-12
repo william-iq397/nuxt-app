@@ -75,7 +75,7 @@
             <div class="w-1/6 h-full py-8 px-4 border border-solid border-gray-400 rounded-lg flex justify-center items-center">
                 <div clas="flex flex-col  border border-solid border-gray-200 rounded-lg">
                     <Icon class="text-gray-400" name="material-symbols:account-circle-outline" size="100" />
-                    <h6>الصورة الشخصية</h6> 
+                    <h6 class="text-center">الصورة الشخصية</h6> 
                 </div>
             </div>
         </div>

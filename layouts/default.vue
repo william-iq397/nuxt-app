@@ -1,9 +1,11 @@
 <template>
   <div class="h-full w-full font-sans">
       <main class="font-sans w-full h-full flex">
+
+
           <slot />
           <div class="h-screen relative w-[300px] ">
-              <SideBar v-if="isLoginPage" class="sidebar" />
+              <SideBar v-if="isLoginPage" class="sidebar"/>
           </div>
       </main>
   </div>
@@ -39,7 +41,7 @@ html,
 body,
 #__nuxt {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
 
 

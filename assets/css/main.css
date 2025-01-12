@@ -7,10 +7,10 @@
 body {
     background: linear-gradient(
         to bottom right,
-        rgba(173, 216, 230, 0.4),
-        /* Light Blue at top left */ rgba(255, 255, 255, 0.4),
-        /* White in the middle */ rgba(173, 216, 230, 0.4)
-            /* Light Blue at bottom right */
+        rgba(173, 216, 230, 0.4), /* Light Blue at top left */
+        rgba(255, 255, 255, 0.4), /* White in the middle */
+        rgba(173, 216, 230, 0.4)  /* Light Blue at bottom right */
+            
     );
 
     background-repeat: no-repeat;
