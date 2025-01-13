@@ -15,7 +15,9 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
-
+// TO DO 
+// make inputs required
+// make the create() in the useStore file
 const route = useRoute()
 
 

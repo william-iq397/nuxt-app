@@ -11,7 +11,7 @@ export const useStudents = defineStore("useStudents", {
             father_name: '',
             father_number: '',
             father_profession: '',
-            profession_work: '',
+            profession_work_place: '',
             relative_type: '',
             father_work_condition: '',
             mother_name: '',
