@@ -1,9 +1,9 @@
 <template>
   <div class="h-full w-full">
-      <main class="font-sans w-full h-full flex">
+      <main class="font-sans w-full h-full flex justify-between relative">
          <div id="linear-bg"></div>
           <slot />
-          <div class="h-screen relative w-[300px]">
+          <div id="sidebar-container" class="h-screen relative w-[300px] transition-all">
               <SideBar v-if="isLoginPage" class="sidebar"/>
           </div>
       </main>
@@ -15,10 +15,8 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
-import { useStudents } from '~/store/useStore';
 
 const route = useRoute()
-const store = useStudents()
 
 
 const appConfig = useAppConfig()

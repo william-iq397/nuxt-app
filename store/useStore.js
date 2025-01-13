@@ -1,33 +1,34 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
 export const useStudents = defineStore("useStudents", {
     state: () => ({
-        pages: {
-            "/": "الرئيسية",
-            accountant: "الحسابات",
-        },
-        studentsRequests: [],
         students: [],
-           student: {
-                student_name: '',
-                father_name: '',
-                mother_name: '',
-                father_number: '',
-                mother_number: '',
-                branch: 'الجبيلة',
-                student_birthdate: '',
-                student_id_photo: '',
-                },
+        student: {
+            student_name: '',
+            gender: '',
+            grade: '',
+            blood_type: '',
+            residancy_place: '',
+            father_name: '',
+            father_number: '',
+            father_profession: '',
+            profession_work: '',
+            relative_type: '',
+            father_work_condition: '',
+            mother_name: '',
+            mother_profession: '',
+            does_student_has_disease: '',
+            disease_type: '',
+            note: '',
+            student_birthdate: '',
+            student_id_photo: '',
+            payment_method: '',
+            discount_percentage: '',
+            },
         teachers: [],
         teacher: {
             teacher_name: '',
             teacher_description: '',
             teacher_image: '',
-        },
-        curriculums: [],
-        curriculum: {
-            curriculum_name: '',
-            curriculum_file: '',
-            curriculum_image: '',
         },
 
 

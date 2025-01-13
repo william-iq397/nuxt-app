@@ -39,7 +39,7 @@
         </div>
   
         <!-- Bars -->
-        <div class="ml-10 absolute z-30 h-full flex items-end space-x-4">
+        <div class="ml-16 absolute z-30 h-full flex items-end space-x-4">
           <div class="w-10 h-[60%] bg-pink rounded-md"></div>
           <div class="w-12 bg-blue h-[30%] rounded-md"></div>
           <div class="w-12 bg-[#C3C3FF] h-[70%] rounded-md"></div>
