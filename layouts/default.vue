@@ -16,6 +16,10 @@
 import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 // TO DO 
+// fix BG color 
+// add father information headers (اختيار القرابة, حالة العمل)
+// calculate student age by (currentYear - birthyear) 
+// adjust the font size font responsive to the addstudent page
 // make inputs required
 // make the create() in the useStore file
 const route = useRoute()

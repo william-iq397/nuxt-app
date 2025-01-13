@@ -74,7 +74,7 @@
 
             <!-- input image field -->
              <div class="w-3/12 h-full flex flex-col justify-center my-4">
-                <span class="mx-auto cursor-pointer border border-solid border-danger p-2 mb-4 rounded-md" @click="clearImage" v-if="store.student.student_id_photo">الغاء الصورة</span>
+                <span class="mx-auto cursor-pointer border border-solid text-danger border-danger p-2 mb-4 rounded-md" @click="clearImage" v-if="store.student.student_id_photo">الغاء الصورة</span>
                 <label for="student_image" class="relative mb-2 px-2 cursor-pointer w-full h-full py-8 border border-solid border-gray-400 rounded-lg flex justify-center items-center">
                     <div clas="flex flex-col border border-solid border-gray-200 rounded-lg">
                         <Icon v-if="!store.student.student_id_photo" class="text-gray-400" name="material-symbols:account-circle-outline" size="100" />
@@ -113,23 +113,11 @@ function handleImageUpload(event) {
   }
 }
 
-const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
 
-        // Convert the file to a data URL
-        reader.onload = (e) => {
-            useStudent.$state.student.student_id_photo = e.target.result; // Save data URL in the state
-        };
-
-        reader.readAsDataURL(file);
-    }
-}
 
 
 function clearImage() {
-    store.student.student_id_photo = null;
+    store.student.student_id_photo = "";
 }
 
 </script>
