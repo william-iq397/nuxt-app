@@ -1,10 +1,9 @@
 <template>
-  <div class="h-full w-full">
-      <main class="font-sans w-full h-full flex justify-between relative">
-         <div id="linear-bg"></div>
+  <div class="h-screen w-full">
+      <main class="font-sans w-full h-screen flex justify-between">
           <slot />
-          <div id="sidebar-container" class="h-screen relative w-[300px] transition-all">
-              <SideBar v-if="isLoginPage" class="sidebar"/>
+          <div v-if="pb.authStore.isValid" id="sidebar-container" class="h-screen relative w-[300px] transition-all">
+              <SideBar class="sidebar"/>
           </div>
       </main>
   </div>
@@ -15,13 +14,19 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
+
 // TO DO 
+// fix => first page send information, second page print, save to student_accountant_request
+// upload image not working
+// display inputs error on the frontend or use css
 // fix BG color 
 // add father information headers (اختيار القرابة, حالة العمل)
 // calculate student age by (currentYear - birthyear) 
 // adjust the font size font responsive to the addstudent page
 // make inputs required
 // make the create() in the useStore file
+
+// 
 const route = useRoute()
 
 

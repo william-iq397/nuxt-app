@@ -5,16 +5,13 @@
 
 /* assets/css/global.css */
 
+button {
+    @apply select-none;
+}
+
 html {
     position: relative;
-}
-
-html * {
-    font-family: 'Cairo', 'Sour Gummy', serif;
-    font-weight: 300;
-}
-
-#linear-bg {
+    min-height: 100vh;
     background: linear-gradient(
         to bottom right,
         rgba(173, 216, 230, 0.4), /* Light Blue at top left */
@@ -22,13 +19,14 @@ html * {
         rgba(173, 216, 230, 0.4)  /* Light Blue at bottom right */
             
     );
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    background-repeat: no-repeat;
 }
+
+html * {
+    font-family: 'Cairo', 'Sour Gummy', serif;
+    font-weight: 300;
+}
+
 
 h1 {
     @apply text-xl lg:text-3xl xl:text-5xl; /* Responsive font sizes for h1 */

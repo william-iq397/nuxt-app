@@ -1,7 +1,7 @@
 <template>
     <div class="1/2 w-full flex flex-col items-center">
         <div class="w-full flex justify-end items-center gap-4 my-8 ">
-            <div class="w-full flex flex-col justify-around items-center"> 
+            <div class="w-full flex flex-col justify-around items-center">
                 <!-- FIRST LINE -->
                 <div class="w-full flex justify-end gap-4 ">
                     <div class="w-2/6">
@@ -15,7 +15,7 @@
                     <div class="w-2/6 text-right">
                         <p >اسم الرباعي للطالب</p>
                         <div class="relative w-full">
-                            <input type="text" id="student_full_name" class="text-right block rounded-lg px-2.5 py-3 w-full text-sm text-gray-400 bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.student_name"  />
+                            <input required type="text" id="student_full_name" class="text-right block rounded-lg px-2.5 py-3 w-full text-sm text-gray-400 bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.student_name"  />
                         </div>
                     </div>
                 </div>
@@ -33,8 +33,9 @@
                     <div class="w-2/6 h-full text-right">
                         <p>المرحلة الدراسية</p>
                         <select id="grade" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.grade">
-                            <option value="ذكر">ذكر</option>
-                            <option value="انثى">انثى</option>
+                            <option value="السادس الاعدادي">السادس الاعدادي</option>
+                            <option value="الثالث متوسط">الثالث متوسط</option>
+                            <option value="السادس الابتدائي">السادس الابتدائي</option>
                         </select>
                     </div>
 
@@ -50,7 +51,7 @@
                         <div class="relative w-full flex flex-col text-right">
                             <p>نوع المرض</p>
                             <div class="relative w-full">
-                                <input type="text" id="disease_type" class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-gray-400 bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.disease_type" />
+                                <input required type="text" id="disease_type" class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-gray-400 bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.disease_type" />
                             </div>
                         </div>
                     </div>
@@ -66,7 +67,7 @@
                     <div class="w-2/6 h-full">
                         <div class="relative w-full text-right">
                             <p>مكان السكن</p>
-                            <input type="text" id="residancy_place" class="text-right block rounded-lg px-2.5 py-3 w-full text-sm text-gray-400 bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.residancy_place" />
+                            <input required type="text" id="residancy_place" class="text-right block rounded-lg px-2.5 py-3 w-full text-sm text-gray-400 bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.residancy_place" />
                         </div>
                     </div>
                 </div>
@@ -79,7 +80,7 @@
                     <div clas="flex flex-col border border-solid border-gray-200 rounded-lg">
                         <Icon v-if="!store.student.student_id_photo" class="text-gray-400" name="material-symbols:account-circle-outline" size="100" />
                         <h6 v-if="!store.student.student_id_photo" class="text-center">الصورة الشخصية</h6> 
-                        <input id="student_image" type="file" accept="image/*" class="hidden" @change="handleImageUpload" />
+                        <input required id="student_image" type="file" class="hidden" @change="handleImageUpload" />
                     </div class="absolute top-0 right-0 z-10">
                     <img v-if="store.student.student_id_photo" :src="store.student.student_id_photo" class="object-cover w-full h-full" alt="صورة الطالب">
                 </label>
@@ -93,8 +94,8 @@
 <script setup>
 import DatePicker from './DatePicker.vue';
 import { useStudents } from '~/store/useStore';
-const store = useStudents()
 
+const store = useStudents()
 
 // Handle image Upload
 function handleImageUpload(event) {

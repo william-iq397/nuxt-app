@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
+import {usePocketbase} from './pocketbase.js'
 export const useStudents = defineStore("useStudents", {
     state: () => ({
         students: [],
@@ -94,39 +95,52 @@ export const useStudents = defineStore("useStudents", {
 
         // add new studnet
         async addStudent() {
-            const supabase = useSupabaseClient()
-            const { data, error } = await supabase
-                .from("students_request")
-                .insert({
-                    student_name: this.$state.student.student_name,
-                    father_name: this.student.father_name,
-                    mother_name: this.student.mother_name,
-                    father_number: this.student.father_number,
-                    mother_number: this.student.mother_number,
-                    student_birthdate: this.student.student_birthdate,
-                    branch: this.student.branch,
-                    student_id_photo: this.student.student_id_photo, 
-                })
-
-            this.fetchStudentsRequests()
-
-            console.log(data)
-            if (error) {
-                console.log("error" + error.message)
-                return;
+            // add the student object here
+            const student = {
+                student_name: this.student.student_name,
+                gender: this.student.gender,
+                grade: this.student.grade,
+                blood_type: this.student.blood_type,
+                residancy_place: this.student.residancy_place,
+                father_name: this.student.father_name,
+                father_number: this.student.father_number,
+                father_profession: this.student.father_profession,
+                profession_work_place: this.student.profession_work_place,
+                relative_type: this.student.relative_type,
+                father_work_condition: this.student.father_work_condition,
+                mother_name: this.student.mother_name,
+                mother_profession: this.student.mother_profession,
+                does_student_has_disease: this.student.does_student_has_disease,
+                disease_type: this.student.disease_type,
+                note: this.student.note,
+                student_birthdate: this.student.student_birthdate,
+                // student_id_photo: this.student.student_id_photo,
+                payment_method: this.student.payment_method,
+                discount_percentage: this.student.discount_percentage,
             }
-            
-            this.student = {
-                student_name: "",
-                father_name: "",
-                mother_name: "",
-                father_number: "",
-                mother_number: "",
-                branch: "الجبيلة",
-                student_birthdate: "",
-                student_id_photo: "", // Reset the photo
-            };
+
+            this.isValid()
+
+            const pb = usePocketbase()
+            const record = await pb.collection('students').create(student);
         },
+
+        async calculateAge(BirthDate) {
+            // Get today's date
+            const studentBirthDate = new Date(BirthDate)
+            const today = new Date();
+          
+            // Calculate the difference in years
+            let age = today.getFullYear() - studentBirthDate.getFullYear();
+          
+            // Check if the birthday hasn't occurred yet this year
+             // If the current month is before the birth month
+            if (today.getMonth() + 1 < studentBirthDate.getMonth()) {
+              age--;
+            }
+          
+            return age;
+          },
 
         async deleteStudent(id, table) {
             const supabase = useSupabaseClient()
@@ -265,59 +279,73 @@ export const useStudents = defineStore("useStudents", {
             this.fetchTeachers();
         },
 
-        // Curriculums functions
-        // async fetchCurriculums() {
-        //    const supabase = useSupabaseClient()
-        //    const { data, error } = await supabase
-        //    .from('curriculums')
-        //    .select()
-        //    .order('created_at', {ascending: true})
+        async isValid() {
+            const errors = [];
+      
+            if (!this.student.student_name.trim()) {
+              errors.push("Student name is required.");
+            }
+            if (!["male", "female", "other"].includes(this.student.gender)) {
+              errors.push("Gender must be 'male', 'female', or 'other'.");
+            }
+            if (!this.student.grade || isNaN(this.student.grade) || this.student.grade < 1) {
+              errors.push("Grade must be a positive number.");
+            }
+            if (!this.student.blood_type.trim()) {
+              errors.push("Blood type is required.");
+            }
+            if (!this.student.residancy_place.trim()) {
+              errors.push("Residency place is required.");
+            }
+            if (!this.student.father_name.trim()) {
+              errors.push("Father's name is required.");
+            }
+            if (!/^\d{10,15}$/.test(this.student.father_number)) {
+              errors.push("Father's number must be a valid phone number (10-15 digits).");
+            }
+            if (!this.student.father_profession.trim()) {
+              errors.push("Father's profession is required.");
+            }
+            if (!this.student.profession_work_place.trim()) {
+              errors.push("Profession work place is required.");
+            }
+            if (!this.student.relative_type.trim()) {
+              errors.push("Relative type is required.");
+            }
+            if (!this.student.father_work_condition.trim()) {
+              errors.push("Father's work condition is required.");
+            }
+            if (!this.student.mother_name.trim()) {
+              errors.push("Mother's name is required.");
+            }
+            if (!this.student.mother_profession.trim()) {
+              errors.push("Mother's profession is required.");
+            }
+            if (this.student.does_student_has_disease && !this.student.disease_type.trim()) {
+              errors.push("Disease type is required if the student has a disease.");
+            }
+            if (!this.student.student_birthdate || isNaN(new Date(this.student.student_birthdate).getTime())) {
+              errors.push("Student birthdate is invalid or missing.");
+            }
+            if (!["cash", "card", "online"].includes(this.student.payment_method.toLowerCase())) {
+              errors.push("Payment method must be 'cash', 'card', or 'online'.");
+            }
+            if (
+              this.student.discount_percentage !== null &&
+              (isNaN(this.student.discount_percentage) ||
+                this.student.discount_percentage < 0 ||
+                this.student.discount_percentage > 100)
+            ) {
+              errors.push("Discount percentage must be a number between 0 and 100.");
+            }
+      
+            if (errors.length > 0) {
+              return { valid: false, errors };
+            }
+      
+            return { valid: true };
+          },
+        },
+    }
+)
 
-        //    this.curriculums = data
-        //    console.log("data : " +  data)
-        // },
-
-        // async addCurriculum() {
-        //     const supabase = useSupabaseClient();
-        //     const { data, error } = await supabase
-        //     .from('curriculums')
-        //     .insert({
-        //         curriculum_name: this.curriculum.curriculum_name,
-        //         curriculum_file: this.curriculum.curriculum_file,
-        //         curriculum_image: this.curriculum.curriculum_image,
-        //     })
-
-        //     this.fetchCurriculums()
-                    
-        //     this.curriculum.curriculum_name = ""
-        //     this.curriculum.curriculum_file = ""
-        //     this.curriculum.curriculum_image = ""
-        // }, 
-
-
-        // async deleteCurriculum(id) {
-        //     const supabase = useSupabaseClient();
-        //     const { data, error } = await supabase
-        //     .from('curriculums')
-        //     .delete()
-        //     .eq('id', id)
-
-        //     this.fetchCurriculums()
-        // },
-
-        // async updateCurriculum(id, curriculum) {
-        //     const supabase = useSupabaseClient();
-        //     const { data, error } = await supabase
-        //     .from('curriculums')
-        //     .update({
-        //         id: id,
-        //         curriculum_name: curriculum.curriculum_name,
-        //         curriculum_file: curriculum.curriculum_file,
-        //         curriculum_image: curriculum.curriculum_image,
-        //     })
-        //     .eq('id', id)
-
-        //     this.fetchCurriculums()
-        // } 
-    },
-})

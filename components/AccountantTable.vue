@@ -29,7 +29,7 @@
 
       <!-- Filter Button -->
       <button @click="filterResults"
-        class="py-2 px-6 rounded-lg bg-blue-500 text-white text-md xl:text-lg 2xl:text-2xl font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1">
+        class="py-2 px-6 rounded-lg bg-blue-500 text-white bg-primary text-md xl:text-lg 2xl:text-2xl font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1">
         بحث
       </button>
     </div>
@@ -43,7 +43,7 @@
             <th class="px-4 py-2 border-b border-gray-300">الاسم</th>
             <th class="px-4 py-2 border-b border-gray-300">الجنس</th>
             <th class="px-4 py-2 border-b border-gray-300">الصف</th>
-            <th class="px-4 py-2 border-b border-gray-300">المجموعة</th>
+            <th class="px-4 py-2 border-b border-gray-300">الشعبة</th>
             <th class="px-4 py-2 border-b border-gray-300">نوع الدفع</th>
             <th class="px-4 py-2 border-b border-gray-300">المبلغ المتبقي</th>
             <th class="px-4 py-2 border-b border-gray-300">خصم</th>
@@ -85,8 +85,8 @@ const students = ref([
   {
     name: "محمد علي",
     gender: "ذكر",
-    class: "10-A",
-    group: "علمي",
+    class: "سادس اعدادي",
+    group: "A",
     paymentType: "دفع كامل",
     remainingMoney: 0,
     hasDiscount: true,
@@ -94,8 +94,8 @@ const students = ref([
   {
     name: "فاطمة أحمد",
     gender: "أنثى",
-    class: "10-B",
-    group: "أدبي",
+    class: "ثالث متوسط",
+    group: "B",
     paymentType: "أقساط",
     remainingMoney: 200,
     hasDiscount: false,
@@ -103,8 +103,8 @@ const students = ref([
   {
     name: "عمر خالد",
     gender: "ذكر",
-    class: "9-C",
-    group: "تجاري",
+    class: "سادس ابتدائي",
+    group: "C",
     paymentType: "أقساط",
     remainingMoney: 150,
     hasDiscount: true,
@@ -145,4 +145,6 @@ const filterResults = () => {
 onMounted(() => {
   filteredStudents.value = students.value;
 });
+
+
 </script>

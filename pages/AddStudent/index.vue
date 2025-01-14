@@ -4,7 +4,7 @@
         <MotherInformation/>
         <ParentInformation/>
         <PaymentInformation/>
-        <StudentConfirmationSection/>
+        <StudentSaveButtons  />
     </div>
 </template>
 
@@ -12,6 +12,15 @@
 import StudentInformation from '~/components/AddStudentForm/StudentInformation.vue';
 import MotherInformation from '~/components/AddStudentForm/MotherInformation.vue';
 import ParentInformation from '~/components/AddStudentForm/ParentInformation.vue';
+import StudentConfirmationButtons from '~/components/AddStudentForm/StudentConfirmationButtons.vue';
+import StudentSaveButtons from '~/components/AddStudentForm/StudentSaveButtons.vue';
 import PaymentInformation from '~/components/AddStudentForm/PaymentInformation.vue';
-import StudentConfirmationSection from '~/components/AddStudentForm/StudentConfirmationSection.vue';
+
+function log() {
+    console.log('Cancel clicked');
+}
+
+function toConfirmPage() {
+    navigateTo('addstudent/confirminformation')
+}
 </script>

@@ -32,7 +32,7 @@ const route = useRouter()
 
 function logout() {
     pb.authStore.clear()
-    route.push('/')
+    route.push('/login')
     console.log("logged out")
 }
 
