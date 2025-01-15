@@ -16,6 +16,7 @@ import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 // TO DO 
+// update the total number after discount the equation is => total - (total * discount / 100)
 // fix => first page send information, second page print, save to student_accountant_request
 // upload image not working
 // display inputs error on the frontend or use css

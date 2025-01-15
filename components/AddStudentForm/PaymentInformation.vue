@@ -9,8 +9,8 @@
             <div class="w-2/6 h-full text-right">
                 <p>اختيار طريقة الدفع</p>
                 <select id="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.payment_method">
-                    <option value="كاش">كاش</option>
-                    <option value="الكتروني">الكتروني</option>
+                    <option value="اقساط">اقساط</option>
+                    <option value="دفع كامل">دفع كامل</option>
                 </select>
             </div>
         

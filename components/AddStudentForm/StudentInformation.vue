@@ -12,6 +12,15 @@
                         </select>
                     </div>
                 
+                    <div class="w-2/6">
+                        <p class="text-right">الشعبة</p>
+                        <select id="groupd" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2  dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.group">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                        </select>
+                    </div>
+
                     <div class="w-2/6 text-right">
                         <p >اسم الرباعي للطالب</p>
                         <div class="relative w-full">

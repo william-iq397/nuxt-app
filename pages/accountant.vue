@@ -8,6 +8,6 @@
 </template>
 
 <script setup layout="default">
-import AccountantTable from '../components/AccountantTable.vue'
-import StudentsStatistics from '../components/StudentsStatistics.vue'
+import AccountantTable from '../components/accountant/AccountantTable.vue'
+import StudentsStatistics from '../components/accountant/StudentsStatistics.vue'
 </script>

@@ -3,8 +3,8 @@
         <StudentInformation/>
         <MotherInformation/>
         <ParentInformation/>
-        <PaymentInformation/>
-        <StudentSaveButtons  />
+        <!-- <PaymentInformation/> -->
+        <StudentSaveButtons />
     </div>
 </template>
 
@@ -20,7 +20,5 @@ function log() {
     console.log('Cancel clicked');
 }
 
-function toConfirmPage() {
-    navigateTo('addstudent/confirminformation')
-}
+
 </script>

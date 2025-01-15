@@ -13,7 +13,7 @@
                     <span class="text-[15px] ml-4 font-bold">{{ link.text }}</span>
                 </div>
             </NuxtLink>
-            <div @click="logout" class="sidebar-item  mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
+            <div @click="logout" class="sidebar-item my-2 mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
                 <Icon name="ph:sign-out-light" color='white' />
                 <span class="text-[15px] ml-4 font-bold">تسجيل الخروج</span>
             </div>

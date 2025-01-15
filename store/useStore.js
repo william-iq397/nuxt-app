@@ -3,10 +3,12 @@ import {usePocketbase} from './pocketbase.js'
 export const useStudents = defineStore("useStudents", {
     state: () => ({
         students: [],
+        signleStudent: {},
         student: {
             student_name: '',
             gender: '',
             grade: '',
+            group: '',
             blood_type: '',
             residancy_place: '',
             father_name: '',
@@ -22,9 +24,13 @@ export const useStudents = defineStore("useStudents", {
             note: '',
             student_birthdate: '',
             student_id_photo: '',
+            amount_paid: '',
             payment_method: '',
+            payment_type: '',
             discount_percentage: '',
-            },
+            receive_payment_date: '',
+            total_amount: '',
+          },
         teachers: [],
         teacher: {
             teacher_name: '',
@@ -68,25 +74,17 @@ export const useStudents = defineStore("useStudents", {
 
     // fetch registered students 
 
+    async fetchStudent(id) {
+        const pb = usePocketbase()
+        const student = await pb.collection('students').get(id)
+    },
+
     async fetchStudents() {
-        const supabase = useSupabaseClient();
+        const pb = usePocketbase();
     
         try {
-            const { data, error } = await supabase
-                .from("students")
-                .select("*")
-                .order("created_at", { ascending: false });
-    
-            if (error) {
-                console.error("Error fetching students:", error.message);
-                return;
-            }
-    
-            if (data) {
-                this.students = data;
-            } else {
-                console.warn("No students found.");
-            }
+            const students = await pb.collection('students').getFullList();
+            this.students = students;
         } catch (err) {
             console.error("Unexpected error fetching students:", err);
         }
@@ -122,25 +120,36 @@ export const useStudents = defineStore("useStudents", {
             this.isValid()
 
             const pb = usePocketbase()
-            const record = await pb.collection('students').create(student);
+            const { id } = await pb.collection('students').create(student);
+            navigateTo(`/studentinformation/${id}`)
         },
 
-        async calculateAge(BirthDate) {
-            // Get today's date
-            const studentBirthDate = new Date(BirthDate)
-            const today = new Date();
-          
-            // Calculate the difference in years
-            let age = today.getFullYear() - studentBirthDate.getFullYear();
-          
-            // Check if the birthday hasn't occurred yet this year
-             // If the current month is before the birth month
-            if (today.getMonth() + 1 < studentBirthDate.getMonth()) {
-              age--;
-            }
-          
-            return age;
-          },
+        async updatePaymentInfo(id) {
+          const pb = usePocketbase();
+        
+          try {
+            // Fetch the existing student data
+            const student = await pb.collection('students').getOne(id);
+        
+            // Update the student's fields with new data
+            student.payment_method = this.student.payment_method;
+            student.amount_paid = this.student.amount_paid; // Corrected typo
+            student.payment_type = this.student.payment_type;
+            student.receive_payment_date = this.student.receive_payment_date;
+            student.total_amount = this.student.total_amount;
+            student.discount_percentage = this.student.discount_percentage; // Fixed duplicate assignment
+        
+            // Send the updated student data back to PocketBase
+            await pb.collection('students').update(id, student);
+        
+            // Navigate to the updated student's information page
+            navigateTo(`/studentinformation/${id}`);
+          } catch (error) {
+            console.error("Error updating student payment info:", error);
+            alert("Failed to update student payment information. Please try again.");
+          }
+        },
+        
 
         async deleteStudent(id, table) {
             const supabase = useSupabaseClient()
