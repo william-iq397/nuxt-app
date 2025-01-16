@@ -16,6 +16,7 @@ import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 // TO DO 
+// update student financial information after first edit
 //set accnntnt role, change ui stuff, remove extra code and imports and components
 // update the total number after discount the equation is => total - (total * discount / 100)
 // upload image not working

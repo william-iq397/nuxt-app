@@ -9,14 +9,14 @@
 
       <!-- Edit Form -->
       <div class="w-full max-w-5xl bg-white rounded-xl shadow-md p-8">
-        <form @submit.prevent="store.updatePaymentInfo(studentId)">
+        <form @submit.prevent="store.updatePaymentInfo(studentId, student)">
           <!-- Form Grid -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Field 1: طريقة الدفع -->
             <div>
               <label class="block text-lg font-medium text-gray-700 mb-2">نوع الاستلام</label>
               <select
-                v-model="store.student.payment_type"
+                v-model="student.payment_type"
                 class="w-full p-3 rounded-lg border border-soild border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
               >
                 <option selected value="دفع كامل">دفع كامل</option>
@@ -29,7 +29,7 @@
               <label class="block text-lg font-medium text-gray-700 mb-2">نسبة التخفيض</label>
               <input
                 type="number"
-                v-model="store.student.discount_percentage"
+                v-model="student.discount_percentage"
                 placeholder="أدخل نسبة التخفيض"
                 class="w-full p-3 rounded-lg border border-soild border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
               />
@@ -40,7 +40,7 @@
               <label class="block text-lg font-medium text-gray-700 mb-2">المبلغ الكلي</label>
               <input
                 type="number"
-                v-model="store.student.total_amount"
+                v-model="student.total_amount"
                 placeholder="المبلغ الكلي"
                 class="w-full p-3 rounded-lg border border-soild border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
               />
@@ -51,7 +51,7 @@
               <label class="block text-lg font-medium text-gray-700 mb-2">المبلغ المدفوع</label>
               <input
                 type="number"
-                v-model="store.student.amount_paid"
+                v-model="student.amount_paid"
                 placeholder="أدخل المبلغ المدفوع"
                 class="w-full p-3 rounded-lg border border-soild border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
               />
@@ -62,7 +62,7 @@
               <label class="block text-lg font-medium text-gray-700 mb-2">تاريخ الاستلام</label>
               <input
                 type="date"
-                v-model="store.student.receive_payment_date"
+                v-model="student.receive_payment_date"
                 class="w-full p-3 rounded-lg border border-soild border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
               />
             </div>
@@ -71,7 +71,7 @@
             <div>
               <label class="block text-lg font-medium text-gray-700 mb-2">طريقة الاستلام</label>
               <select
-                v-model="store.student.payment_method"
+                v-model="student.payment_method"
                 class="w-full p-3 rounded-lg border border-soild border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
               >
                 <option value="كاش">كاش</option>
@@ -104,24 +104,37 @@ const store = useStudents()
 const route = useRoute()
 const studentId = route.params.id
 const pb = usePocketbase() // Custom composable for PocketBase
-const student = ref({})
+const student = reactive({
+  payment_method: "",
+  amount_paid: "",
+  payment_type: "",
+  receive_payment_date: "",
+  total_amount: "",
+  discount_percentage: "",
+  is_financial_information_filled: false,
+});
 
-const fetchStudent = async (id) => {
-  try {
-    student.value = await pb.collection('students').getOne(id);
-  } catch (error) {
-    console.error('Error fetching student:', error);
-  }
-};
 
 
 function print() {
-    window.print();
+  window.print();
 }
 
+
+const fetchStudent = async (id) => {
+  try {
+    const data = await pb.collection("students").getOne(id);
+    Object.assign(student, data); // Update the reactive `student` object
+  } catch (error) {
+    console.error("Error fetching student:", error);
+  }
+}
+
+
 onMounted(() => {
-    fetchStudent(studentId);
-}, { immediate: true } );
+  fetchStudent(studentId);
+});
+
 </script>
 
 

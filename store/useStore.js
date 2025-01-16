@@ -59,6 +59,7 @@ export const useStudents = defineStore("useStudents", {
     async fetchStudent(id) {
         const pb = usePocketbase()
         const student = await pb.collection('students').get(id)
+        this.signleStudent = student
     },
 
     async fetchStudents() {
@@ -130,24 +131,26 @@ export const useStudents = defineStore("useStudents", {
             navigateTo(`/studentinformation/${id}`)
         },
 
-        async updatePaymentInfo(id) {
+        async updatePaymentInfo(id, student) {
           const pb = usePocketbase();
         
           try {
-            // Fetch the existing student data
-            const student = await pb.collection('students').getOne(id);
-        
-            // Update the student's fields with new data
-            student.payment_method = this.student.payment_method;
-            student.amount_paid = this.student.amount_paid; // Corrected typo
-            student.payment_type = this.student.payment_type;
-            student.receive_payment_date = this.student.receive_payment_date;
-            student.total_amount = this.student.total_amount;
-            student.discount_percentage = this.student.discount_percentage; // Fixed duplicate assignment
-            student.is_financial_information_filled = true;
+            // Prepare updated data from form values
+            const updatedData = {
+              payment_method: student.payment_method,
+              amount_paid: student.amount_paid,
+              payment_type: student.payment_type,
+              receive_payment_date: student.receive_payment_date,
+              total_amount: student.total_amount,
+              discount_percentage: student.discount_percentage,
+              is_financial_information_filled: true,
+            };
         
             // Send the updated student data back to PocketBase
-            await pb.collection('students').update(id, student);
+            await pb.collection("students").update(id, updatedData);
+        
+            // Optionally, refetch the updated data
+            student = await pb.collection("students").getOne(id);
         
             // Navigate to the updated student's information page
             navigateTo(`/studentinformation/${id}`);
