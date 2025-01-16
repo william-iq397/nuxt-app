@@ -83,15 +83,18 @@
                         <td class="p-4 font-medium">رقم ولي امر الطالب</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-black font-semibold">{{ student.payment_method }}</td>
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>{{ student.payment_method }}</td>
                         <td class="p-4 font-medium">طريقة الدفع</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-black font-semibold">{{ student.discount_percentage }}%</td>
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>{{ student.discount_percentage }}%</td>
                         <td class="p-4 font-medium">نسبة التخفيض</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-black font-semibold">{{ 
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>{{ 
                                         new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
                                             student.discount_percentage 
                                             ? (student.total_amount - (student.total_amount * (student.discount_percentage / 100))) 
@@ -101,22 +104,26 @@
                         <td class="p-4 font-medium">المبلغ الكلي</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-black font-semibold">{{ new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>{{ new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
                              student.amount_paid ? student.amount_paid : 'لا يوجد') }}</td>
                         <td class="p-4 font-medium">المبلغ المدفوع</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-black font-semibold">{{  new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>{{  new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
                             student.amount_paid ? (student.total_amount - (student.total_amount * (student.discount_percentage / 100))) - student.amount_paid : '1300000')}}
                         </td>
                         <td class="p-4 font-medium">المبلغ المتبقي</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-black font-semibold">{{ student.updated.split(" ")[0] }}</td>
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>{{ student.updated.split(" ")[0] }}</td>
                         <td class="p-4 font-medium">تاريخ الاستلام</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-black font-semibold">
+                        <td v-if="!student.is_financial_information_filled"></td>
+                        <td class="p-4 text-black font-semibold" v-else>
                             {{ student.payment_type }}
                         </td>
                         <td class="p-4 font-medium">نوع الدفع</td>
