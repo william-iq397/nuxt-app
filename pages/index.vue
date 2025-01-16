@@ -1,8 +1,5 @@
 <template>
     <div class="w-full h-full flex gap-4 text-right">
-        <div class="w-fit">
-            <NuxtLink to="/login">go to auth</NuxtLink>
-        </div>
         <div class="w-full flex flex-col justify-start gap-8 ">
             <AccountantStudentsStatistics/>
             <MainStatistics />

@@ -27,7 +27,7 @@
             <table class="w-full border-collapse text-right my-8">
                 <tbody>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-gray-700">{{ student.student_name }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.student_name }}</td>
                         <td class="p-4 font-medium">الاسم الكامل</td>
                     </tr>
                     <tr>
@@ -36,14 +36,14 @@
                     </tr>
                     <tr class="bg-[#C3C3FF]">
                         <td class="p-4 font-medium">{{ student.gender }}</td>
-                        <td class="p-4 text-gray-700">الجنس</td>
+                        <td class="p-4 text-black font-semibold">الجنس</td>
                     </tr>
                     <tr>
                         <td class="p-4 text-black font-semibold">{{ student.student_birthdate }}</td>
                         <td class="p-4 font-medium">تاريخ الولادة</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-gray-700">{{ student.mother_name }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.mother_name }}</td>
                         <td class="p-4 font-medium">اسم الأم</td>
                     </tr>
                     <tr>
@@ -51,7 +51,7 @@
                         <td class="p-4 font-medium">فصيلة الدم</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-gray-700">{{ student.grade }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.grade }}</td>
                         <td class="p-4 font-medium">المرحلة الدراسية</td>
                     </tr>
                     <tr>
@@ -59,7 +59,7 @@
                         <td class="p-4 font-medium">مكان السكن</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-gray-700">{{ student.does_student_has_disease }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.does_student_has_disease }}</td>
                         <td class="p-4 font-medium">لدى الطالب امراض مزمنة</td>
                     </tr>
                     <tr>
@@ -67,11 +67,11 @@
                         <td class="p-4 font-medium">اسم ولي امر الطالب</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-gray-700">{{ student.relative_type }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.relative_type }}</td>
                         <td class="p-4 font-medium">صلة القرابة</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-gray-700">{{ student.father_profession }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.father_profession }}</td>
                         <td class="p-4 font-medium">مهنة ولي الامر</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
@@ -79,7 +79,7 @@
                         <td class="p-4 font-medium">مكان عمل ولي الامر</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-gray-700">{{ student.father_number }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.father_number }}</td>
                         <td class="p-4 font-medium">رقم ولي امر الطالب</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
@@ -87,23 +87,32 @@
                         <td class="p-4 font-medium">طريقة الدفع</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-gray-700">{{ student.discount_percentage }}%</td>
+                        <td class="p-4 text-black font-semibold">{{ student.discount_percentage }}%</td>
                         <td class="p-4 font-medium">نسبة التخفيض</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-black font-semibold">{{ student.discount_percentage ? (student.total_amount - (student.total_amount / student.discount_percentage)) : student.total_amount }}</td>
+                        <td class="p-4 text-black font-semibold">{{ 
+                                        new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+                                            student.discount_percentage 
+                                            ? (student.total_amount - (student.total_amount / student.discount_percentage)) 
+                                            : student.total_amount
+                                        ) 
+                                        }}</td>
                         <td class="p-4 font-medium">المبلغ الكلي</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-gray-700">{{ student.amount_paid ? student.amount_paid : 'لا يوجد' }}</td>
+                        <td class="p-4 text-black font-semibold">{{ new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+                             student.amount_paid ? student.amount_paid : 'لا يوجد') }}</td>
                         <td class="p-4 font-medium">المبلغ المدفوع</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
-                        <td class="p-4 text-black font-semibold">{{ student.paid_amount ? 1300000 - student.paid_amount : '1,300,000'}}</td>
+                        <td class="p-4 text-black font-semibold">{{  new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
+                            student.paid_amount ? 1300000 - student.paid_amount : '1300000')}}
+                            </td>
                         <td class="p-4 font-medium">المبلغ المتبقي</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-gray-700">{{ student.updated.split(" ")[0] }}</td>
+                        <td class="p-4 text-black font-semibold">{{ student.updated.split(" ")[0] }}</td>
                         <td class="p-4 font-medium">تاريخ الاستلام</td>
                     </tr>
                 </tbody>

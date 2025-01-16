@@ -13,7 +13,7 @@
       <select v-model="selectedClass"
         class="text-md xl:text-lg 2xl:text-2xl w-32 py-2 px-4 rounded-lg  border border-gray-300 text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
         <option value="">المرحلة</option>
-        <option v-for="classOption in classOptions" :key="classOption" :value="classOption">
+        <option v-for="classOption in gradeOptions" :key="classOption" :value="classOption">
           {{ classOption }}
         </option>
       </select>
@@ -51,21 +51,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(student, index) in filteredStudents" :key="index" class="hover:bg-gray-50">
+          <tr v-for="(student, index) in filteredStudents" :key="student.id" class="hover:bg-gray-50">
             <td class="px-4 py-2 border-b border-gray-300 flex items-center gap-2">
-              <Icon name="material-symbols:account-circle-outline" color="black" /> {{ student.name }}
+              <Icon name="material-symbols:account-circle-outline" color="black" /> {{ student.student_name }}
             </td>
             <td class="px-4 py-2 border-b border-gray-300">{{ student.gender }}</td>
-            <td class="px-4 py-2 border-b border-gray-300">{{ student.class }}</td>
+            <td class="px-4 py-2 border-b border-gray-300">{{ student.grade }}</td>
             <td class="px-4 py-2 border-b border-gray-300">{{ student.group }}</td>
-            <td class="px-4 py-2 border-b border-gray-300">{{ student.paymentType }}</td>
+            <td class="px-4 py-2 border-b border-gray-300">{{ student.payment_type }}</td>
             <td class="px-4 py-2 border-b border-gray-300 text-red-500">
-              ${{ student.remainingMoney }}
+              IQD{{ student.amount_paid }}
             </td>
             <td class="px-4 py-2 border-b border-gray-300">
               <span class="px-2 py-1 text-xs rounded-full"
                 :class="student.hasDiscount ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'">
-                {{ student.hasDiscount ? 'نعم' : 'لا' }}
+                {{ student.discount_percentage > 0 ? 'نعم' : 'لا' }}
               </span>
             </td>
             <td class="px-4 py-2 border-b border-gray-300">
@@ -79,61 +79,43 @@
 </template>
 
 <script setup>
+import { useStudents } from '~/store/useStore';
 
-// Student data
-const students = ref([
-  {
-    name: "محمد علي",
-    gender: "ذكر",
-    class: "سادس اعدادي",
-    group: "A",
-    paymentType: "دفع كامل",
-    remainingMoney: 0,
-    hasDiscount: true,
-  },
-  {
-    name: "فاطمة أحمد",
-    gender: "أنثى",
-    class: "ثالث متوسط",
-    group: "B",
-    paymentType: "أقساط",
-    remainingMoney: 200,
-    hasDiscount: false,
-  },
-  {
-    name: "عمر خالد",
-    gender: "ذكر",
-    class: "سادس ابتدائي",
-    group: "C",
-    paymentType: "أقساط",
-    remainingMoney: 150,
-    hasDiscount: true,
-  },
-]);
+const store = useStudents()
 
 // Reactive state for filters and search
-const searchQuery = ref("");
-const selectedClass = ref("");
-const selectedGroup = ref("");
+const searchQuery = ref('');
+const selectedClass = ref();
+const selectedGroup = ref('');
 const filteredStudents = ref([]);
 
+onMounted(() => {
+  store.fetchStudents();
+  store.fetchGroups()
+  store.fetchGrades()
+  filteredStudents.value = store.students; // Ensure store.students is populated at this point
+});
+
 // Computed properties for unique class and group options
-const classOptions = computed(() =>
-  [...new Set(students.value.map((student) => student.class))]
-);
-const groupOptions = computed(() =>
-  [...new Set(students.value.map((student) => student.group))]
-);
+const gradeOptions = computed(() => {
+  return [...new Set(store.grades.map((student) => student.grade))];
+});
+
+const groupOptions = computed(() => {
+  return [...new Set(store.groups.map((student) => student.group))];
+});
 
 // Filter students based on input criteria
 const filterResults = () => {
-  filteredStudents.value = students.value.filter((student) => {
+  filteredStudents.value = store.students.filter((student) => {
     const matchesSearch =
       !searchQuery.value ||
-      student.name.includes(searchQuery.value) ||
-      student.gender.includes(searchQuery.value);
+      student.student_name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+      student.gender.toLowerCase().includes(searchQuery.value.toLowerCase());
+
     const matchesClass =
-      !selectedClass.value || student.class === selectedClass.value;
+      !selectedClass.value || student.grade === selectedClass.value;
+
     const matchesGroup =
       !selectedGroup.value || student.group === selectedGroup.value;
 
@@ -141,10 +123,11 @@ const filterResults = () => {
   });
 };
 
-// Populate filtered students initially
-onMounted(() => {
-  filteredStudents.value = students.value;
-});
+
+
+// Watch for changes to search criteria and reapply filters
+watch([searchQuery, selectedClass, selectedGroup], filterResults);
+
 
 
 </script>

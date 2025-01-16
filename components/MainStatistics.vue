@@ -1,6 +1,6 @@
 <template>
-    <div class="statistics-container">
-      <div v-for="(stat, index) in statistics" :key="index" class="stat-card flex ">
+    <div class="statistics-container w-full">
+      <div v-for="(stat, index) in statistics" :key="index" class="stat-card w-1/6 h-32">
         <div class="details flex flex-col">
           <p class="stat-number">{{ stat.count }}</p>
           <h6 class="stat-label">{{ stat.label }}</h6>
@@ -52,7 +52,6 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    width: 160px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);

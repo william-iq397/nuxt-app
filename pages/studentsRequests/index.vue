@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody class="text-md xl:text-lg 2xl:text-2xl">
-                <tr  v-for="(student, index) in store.students" :key="student.id" class="hover:bg-gray-50">
+                <tr  v-for="(student, index) in store.accountantStudents" :key="student.id" class="hover:bg-gray-50">
                 <NuxtLink :to="`/editstudent/${student.id}`" class="flex justify-evenly">
                         <td class="px-4 py-2 border-b border-gray-300 flex items-center gap-2">
                             <Icon name="material-symbols:account-circle-outline" color="black" /> {{ student.student_name }}

@@ -3,6 +3,7 @@ import {usePocketbase} from './pocketbase.js'
 export const useStudents = defineStore("useStudents", {
     state: () => ({
         students: [],
+        accountantStudents: [],
         signleStudent: {},
         student: {
             student_name: '',
@@ -30,6 +31,7 @@ export const useStudents = defineStore("useStudents", {
             discount_percentage: '',
             receive_payment_date: '',
             total_amount: '',
+            is_financial_information_filled: false,
           },
         teachers: [],
         teacher: {
@@ -37,6 +39,9 @@ export const useStudents = defineStore("useStudents", {
             teacher_description: '',
             teacher_image: '',
         },
+
+        groups: [],
+        grades: [],
 
 
         filter: "",
@@ -47,32 +52,8 @@ export const useStudents = defineStore("useStudents", {
     },
     actions: {
     // fetch students requests
-    async fetchStudentsRequests() {
-        const supabase = useSupabaseClient();
-    
-        try {
-            const { data, error } = await supabase
-                .from("students_request")
-                .select("*")
-                .order("created_at", { ascending: false });
-    
-            if (error) {
-                console.error("Error fetching student requests:", error.message);
-                this.studentsRequests = []; // Set to empty array if there's an error
-            } else if (data) {
-                this.studentsRequests = data; // Assign the fetched data
-            } else {
-                console.warn("No data found in students_request table.");
-                this.studentsRequests = []; // Set to empty array if no data
-            }
-        } catch (err) {
-            console.error("Unexpected error:", err.message);
-            this.studentsRequests = []; // Handle unexpected errors
-        }
-    },
-    
 
-    // fetch registered students 
+    
 
     async fetchStudent(id) {
         const pb = usePocketbase()
@@ -80,16 +61,39 @@ export const useStudents = defineStore("useStudents", {
     },
 
     async fetchStudents() {
-        const pb = usePocketbase();
+      const pb = usePocketbase();
     
-        try {
-            const students = await pb.collection('students').getFullList();
-            this.students = students;
-        } catch (err) {
-            console.error("Unexpected error fetching students:", err);
-        }
+      try {
+          const students = await pb.collection('students').getFullList();
+          this.students = students;
+      } catch (err) {
+          console.error("Unexpected error fetching students:", err);
+      }
     },
+
+    async fetchGroups() {
+      const pb = usePocketbase();
     
+      try {
+          const groups = await pb.collection('groups').getFullList();
+          this.groups = groups;
+          console.log(this.groups)
+      } catch (err) {
+          console.error("Unexpected error fetching groups:", err);
+      }
+    },
+
+    async fetchGrades() {
+      const pb = usePocketbase();
+    
+      try {
+          const grades = await pb.collection('grades').getFullList();
+          this.grades = grades;
+          console.log(this.grades)
+      } catch (err) {
+          console.error("Unexpected error fetching grades:", err);
+      }
+    },
 
         // add new studnet
         async addStudent() {
@@ -115,6 +119,7 @@ export const useStudents = defineStore("useStudents", {
                 // student_id_photo: this.student.student_id_photo,
                 payment_method: this.student.payment_method,
                 discount_percentage: this.student.discount_percentage,
+                is_financial_information_filled: this.student.is_financial_information_filled,
             }
 
             this.isValid()
@@ -138,6 +143,7 @@ export const useStudents = defineStore("useStudents", {
             student.receive_payment_date = this.student.receive_payment_date;
             student.total_amount = this.student.total_amount;
             student.discount_percentage = this.student.discount_percentage; // Fixed duplicate assignment
+            student.is_financial_information_filled = true;
         
             // Send the updated student data back to PocketBase
             await pb.collection('students').update(id, student);
@@ -149,6 +155,18 @@ export const useStudents = defineStore("useStudents", {
             alert("Failed to update student payment information. Please try again.");
           }
         },
+
+        async fetchAccountantStudents() {
+          const pb = usePocketbase()
+            try {
+                const students = await pb.collection('students').getFullList( {
+                    filter: 'is_financial_information_filled = false'
+                });
+                this.accountantStudents = students;
+            } catch (error) {
+                console.error('Error fetching students:', error);
+            }
+      },
         
 
         async deleteStudent(id, table) {

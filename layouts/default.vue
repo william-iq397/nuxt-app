@@ -2,7 +2,7 @@
   <div class="h-screen w-full">
       <main class="font-sans w-full h-screen flex justify-between">
           <slot />
-          <div v-if="pb.authStore.isValid" id="sidebar-container" class="h-screen relative w-[300px] transition-all">
+          <div v-if="pb.authStore.isValid" id="sidebar-container" class="h-screen relative w-fit lg:w-[280px] transition-all">
               <SideBar class="sidebar"/>
           </div>
       </main>
@@ -51,8 +51,16 @@ body,
 }
 
 
-.sidebar {
+@media screen and (min-width: 1025px) {
+  .sidebar {
   position: fixed;
   right: 0;
+}}
+
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    position: sticky;
+  }  
 }
 </style>
