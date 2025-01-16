@@ -121,7 +121,7 @@ function print() {
 
 onMounted(() => {
     fetchStudent(studentId);
-});
+}, { immediate: true } );
 </script>
 
 

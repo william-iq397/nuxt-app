@@ -10,4 +10,13 @@
 <script setup layout="default">
 import AccountantTable from '../components/accountant/AccountantTable.vue'
 import StudentsStatistics from '../components/accountant/StudentsStatistics.vue'
+import { useStudents } from '~/store/useStore';
+
+const store = useStudents()
+
+onMounted(() => {
+    store.fetchStudents();
+    store.fetchGroups()
+    store.fetchGrades()
+}, { immediate: true } )
 </script>

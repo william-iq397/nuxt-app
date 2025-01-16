@@ -94,7 +94,7 @@
                         <td class="p-4 text-black font-semibold">{{ 
                                         new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
                                             student.discount_percentage 
-                                            ? (student.total_amount - (student.total_amount / student.discount_percentage)) 
+                                            ? (student.total_amount - (student.total_amount * (student.discount_percentage / 100))) 
                                             : student.total_amount
                                         ) 
                                         }}</td>
@@ -107,13 +107,19 @@
                     </tr>
                     <tr class="bg-[#C3C3FF]">
                         <td class="p-4 text-black font-semibold">{{  new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
-                            student.paid_amount ? 1300000 - student.paid_amount : '1300000')}}
-                            </td>
+                            student.amount_paid ? (student.total_amount - (student.total_amount * (student.discount_percentage / 100))) - student.amount_paid : '1300000')}}
+                        </td>
                         <td class="p-4 font-medium">المبلغ المتبقي</td>
                     </tr>
                     <tr>
                         <td class="p-4 text-black font-semibold">{{ student.updated.split(" ")[0] }}</td>
                         <td class="p-4 font-medium">تاريخ الاستلام</td>
+                    </tr>
+                    <tr class="bg-[#C3C3FF]">
+                        <td class="p-4 text-black font-semibold">
+                            {{ student.payment_type }}
+                        </td>
+                        <td class="p-4 font-medium">نوع الدفع</td>
                     </tr>
                 </tbody>
             </table>

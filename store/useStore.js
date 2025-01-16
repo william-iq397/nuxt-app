@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
 import {usePocketbase} from './pocketbase.js'
+import { preset } from "process"
 export const useStudents = defineStore("useStudents", {
     state: () => ({
         students: [],
@@ -373,6 +374,6 @@ export const useStudents = defineStore("useStudents", {
             return { valid: true };
           },
         },
-    }
+    },
 )
 
