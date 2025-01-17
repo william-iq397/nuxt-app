@@ -1,10 +1,10 @@
 <template>
-    <div class="font-sans text-darkgray select-none w-fit lg:w-[220px] border-l-2 border-solid border-gray-400">
+    <div class="font-sans text-darkgray select-none w-[60px] lg:w-[220px] border-l-2 border-solid border-gray-400">
         <div class="flex flex-col gap-2 h-screen text-center">
             <!-- Logo/Header -->
             <div class="sidebar-item text-xl bg-primary border-l border-t rounded-md">
                 <div
-                    class="py-2 mt-1 flex justify-start items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-2"
+                    class="py-2 mt-1 flex justify-center lg:justify-start items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-2"
                 >
                     <Icon name="heroicons-solid:academic-cap" class="text-white" :size="isSmallScreen ? '32' : '24'" />
                     <h1 v-if="!isSmallScreen" class="font-bold text-[15px] ml-3 text-white">TailwindCSS</h1>
@@ -81,11 +81,6 @@ const links = [
         link: '/',
         icon: 'fa6-solid:user-graduate',
         text: 'الخريجين',
-    },
-    {
-        link: '/thesearch',
-        icon: 'mdi:search',
-        text: 'البحث',
     },
 ];
 

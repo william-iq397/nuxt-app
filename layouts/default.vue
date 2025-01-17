@@ -2,7 +2,7 @@
   <div class="h-screen w-full">
       <main class="font-sans w-full h-screen flex justify-between">
           <slot />
-          <div v-if="pb.authStore.isValid" id="sidebar-container" class="h-screen relative w-fit lg:w-[280px] transition-all">
+          <div v-if="pb.authStore.isValid" id="sidebar-container" class="h-screen relative w-[70px] lg:w-[280px] transition-all">
               <SideBar class="sidebar"/>
           </div>
       </main>
@@ -16,9 +16,9 @@ import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 // TO DO 
+// activate autoImport 
 // adjust print with css or tailwindcss
-// hr can edit student information accountant can edit student financial information
-//set accnntnt role, change ui stuff, remove extra code and imports and components
+// set accnntnt role, change ui stuff, remove extra code and imports and components
 // upload image not working
 // display inputs error on the frontend or use css
 // fix BG color 
@@ -39,29 +39,11 @@ onMounted(() => {
 })
 
 const isLoginPage = route.path !== "/login"
-
-
 </script>
 
 <style>
-html,
-body,
-#__nuxt {
-    width: 100%;
-    height: 100vh;
-}
-
-
-@media screen and (min-width: 1025px) {
-  .sidebar {
+.sidebar {
   position: fixed;
   right: 0;
-}}
-
-
-@media screen and (max-width: 1024px) {
-  .sidebar {
-    position: sticky;
-  }  
 }
 </style>

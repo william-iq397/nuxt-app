@@ -1,6 +1,5 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
 import {usePocketbase} from './pocketbase.js'
-import { preset } from "process"
 export const useStudents = defineStore("useStudents", {
     state: () => ({
         students: [],
@@ -43,6 +42,7 @@ export const useStudents = defineStore("useStudents", {
 
         groups: [],
         grades: [],
+        roles: [],
 
 
         filter: "",
@@ -53,8 +53,6 @@ export const useStudents = defineStore("useStudents", {
     },
     actions: {
     // fetch students requests
-
-    
 
     async fetchStudent(id) {
         const pb = usePocketbase()
@@ -79,7 +77,6 @@ export const useStudents = defineStore("useStudents", {
       try {
           const groups = await pb.collection('groups').getFullList();
           this.groups = groups;
-          console.log(this.groups)
       } catch (err) {
           console.error("Unexpected error fetching groups:", err);
       }
@@ -91,9 +88,18 @@ export const useStudents = defineStore("useStudents", {
       try {
           const grades = await pb.collection('grades').getFullList();
           this.grades = grades;
-          console.log(this.grades)
       } catch (err) {
           console.error("Unexpected error fetching grades:", err);
+      }
+    },
+
+    async fetchRoles() {
+      const pb = usePocketbase();
+      try {
+        const roles = await pb.collection('roles').getFullList();
+        this.roles = roles;
+      } catch (e) {
+        console.error("Unexpected error fetching roles:", e);
       }
     },
 
@@ -154,11 +160,49 @@ export const useStudents = defineStore("useStudents", {
         
             // Navigate to the updated student's information page
             navigateTo(`/studentinformation/${id}`);
+            this.fetchStudents()
           } catch (error) {
             console.error("Error updating student payment info:", error);
             alert("Failed to update student payment information. Please try again.");
           }
         },
+
+        async updateStudentInfo(studentId, student) {
+          const pb = usePocketbase();
+
+          try {
+            // Prepare updated data from form values
+            const updatedData = {
+                student_name: student.student_name,
+                gender: student.gender,
+                grade: student.grade,
+                group: student.group,
+                blood_type: student.blood_type,
+                residancy_place: student.residancy_place,
+                father_name: student.father_name,
+                father_number: student.father_number,
+                father_profession: student.father_profession,
+                profession_work_place: student.profession_work_place,
+                relative_type: student.relative_type,
+                father_work_condition: student.father_work_condition,
+                mother_name: student.mother_name,
+                mother_profession: student.mother_profession,
+                does_student_has_disease: student.does_student_has_disease,
+                disease_type: student.disease_type,
+                note: student.note,
+                student_birthdate: student.student_birthdate,
+              } 
+            // Send the updated student data back to PocketBase
+            await pb.collection("students").update(studentId, updatedData)
+            // Optionally, refetch the updated data
+            student = await pb.collection("students").getOne(studentId)
+            navigateTo('/students')
+      } catch (error) {
+        console.error("Error updating student info:", error)
+        alert("Failed to update student information. Please try again.")
+      }
+
+      },
 
         async fetchAccountantStudents() {
           const pb = usePocketbase()
