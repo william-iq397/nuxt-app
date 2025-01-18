@@ -30,9 +30,9 @@
 
 
             <!-- Filter Button -->
-            <!-- <button @click="store.fetchStudents()" class="py-2 px-6 rounded-lg bg-blue-500 text-white bg-primary text-md xl:text-lg 2xl:text-2xl font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1">
+            <button @click="onRefresh" class="py-2 px-6 rounded-lg bg-blue-500 text-white bg-primary text-md xl:text-lg 2xl:text-2xl font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-1">
                 <Icon name="material-symbols-light:directory-sync-rounded" />
-            </button> -->
+            </button>
         </div>
 
         <!-- Table -->
@@ -94,6 +94,11 @@ const searchQuery = ref('');
 const selectedClass = ref();
 const selectedGroup = ref('');
 const filteredStudents = ref([]);
+
+function onRefresh() {
+    store.fetchStudents();
+    filteredStudents.value = store.students;
+}
 
 onMounted(() => {
     store.fetchStudents();

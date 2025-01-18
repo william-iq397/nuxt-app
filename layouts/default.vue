@@ -17,7 +17,7 @@ import { usePocketbase } from '~/pocketbase';
 
 // TO DO 
 // add phone number to the addStudent to register with the app
-// add registary year to the addstudent page 
+// add registrary year to addStudent, editStudentInformation
 // create table named academic_year, create another field for student with academic year
 // add academic_year to know the student academic year 
 // add maximux student number to the each class
