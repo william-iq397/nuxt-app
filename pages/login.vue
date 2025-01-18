@@ -31,12 +31,9 @@
 </template>
 
 <script setup layout="login">
-
-import { useRouter } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 const pb = usePocketbase()
-const route = useRouter()
 const useremail = ref('');
 const password = ref('');
 
@@ -44,7 +41,6 @@ const password = ref('');
 const isUserLoginIn = computed(() => pb.authStore.isValid);
 
 
-const router = useRouter();
 const error = ref('');
 
 const handleLogin = async () => {
@@ -56,7 +52,7 @@ const handleLogin = async () => {
         console.log('Login successful:', authData);
 
         // Redirect to another page
-        router.push('/');
+        navigateTo('/');
     } catch (err) {
         error.value = err.message || 'An error occurred during login.';
     }
