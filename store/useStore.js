@@ -44,6 +44,8 @@ export const useStudents = defineStore("useStudents", {
         grades: [],
         roles: [],
 
+        academicYears: [],
+
 
         filter: "",
     }),
@@ -215,7 +217,24 @@ export const useStudents = defineStore("useStudents", {
                 console.error('Error fetching students:', error);
             }
       },
-        
+
+      async getActiveYearStudents() {
+        const activeYear = await pb.collection('academic_years').getFirstListItem('is_active = true')
+        const students = await pb.collection('students').getFullList({
+            filter: `registered_year = "${activeYear.id}"`,
+        })
+      },
+
+        async getAcademicYears() {
+          const pb = usePocketbase()
+
+          try {
+              const academicYears = await pb.collection('academic_years').getFullList()
+              this.academicYears = academicYears
+              } catch (error) {
+              console.error('Error fetching academic years:', error)
+            }
+        },
 
         async deleteStudent(id, table) {
             const supabase = useSupabaseClient()

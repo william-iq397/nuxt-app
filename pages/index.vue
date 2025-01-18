@@ -4,11 +4,11 @@
             <AccountantStudentsStatistics/>
             <MainStatistics />
             <RegisterSection/>
-            <div class="flex justify-between gap-4 w-full ">
-                <StudentsPieChart />
-                <TeachersPieChart />
+            <div class="flex flex-col lg:flex-row justify-between gap-4 w-full">
+                <StudentsPieChart class="w-1/2" />
+                <TeachersPieChart class="w-1/2" />
             </div>
-            <StudentsCounter />
+            <BarChart />
         </div>
     </div>
 </template>

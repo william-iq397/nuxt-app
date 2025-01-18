@@ -1,53 +1,51 @@
 <template>
-    <div class="bg-gray-100 p-3 ml-3 rounded-lg shadow-md">
-      <!-- Title and Year -->
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-lg font-bold text-gray-700">{{ currentYear }}</h2>
-        <h3 class="text-gray-600">نسبة المدرسة لصفوف المنتهيه</h3>
+  <div class="p-6 w-full">
+    <div class="w-full mx-auto shadow-lg rounded-lg p-6">
+      <div class="flex justify-between items-center mb-6">
+        <div class="flex justify-evenly w-1/2">
+          <h2 class="text-right text-xl font-semibold mb-4 p-2 rounded-lg bg-primary">الاعدادية</h2>
+          <h2 class="text-right text-xl font-semibold mb-4 p-2 rounded-lg bg-darkgray">الابتدائية</h2>
+          <h2 class="text-right text-xl font-semibold mb-4 p-2 rounded-lg bg-pink">المتوسطة</h2>
+        </div>
+        <h2 class="text-right text-xl font-semibold mb-4">تصنيف بنات الإمارات</h2>
       </div>
-  
-      <!-- Legend -->
-      <div class="flex justify-center space-x-4 mb-6">
-        <div class="flex items-center space-x-2">
-          <span class="w-4 h-4 bg-pink rounded-full"></span>
-          <span class="text-gray-600 text-sm">الثالث متوسط</span>
+      <div class="flex flex-col items-center space-y-4">
+        <div v-for="(bar, index) in bars" :key="index" class="flex justify-between w-full">
+          <div class="relative h-6 rounded-full overflow-hidden" :style="{ width: (bar.percentage) + '%', backgroundColor: bar.color }">
+            <span class="absolute inset-0 flex items-center justify-center text-white text-base">
+              ({{ bar.percentage.toFixed(0) }}%)
+            </span>
+          </div>
         </div>
-        <div class="flex items-center space-x-2">
-          <span class="w-4 h-4 bg-blue rounded-full"></span>
-          <span class="text-gray-600 text-sm">السادس ابتدائي</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <span class="w-4 h-4 bg-[#C3C3FF] rounded-full"></span>
-          <span class="text-gray-600 text-sm">السادس اعدادي</span>
-        </div>
-      </div>
-  
-      <!-- Bar Chart -->
-      <div class="relative flex flex-col items-start">
-        <!-- Y-Axis -->
-        <div class="flex flex-col justify-between items-start text-gray-500 text-sm">
-          <span class="relative">100%<span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span> 
-          <span class="relative">90% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">80% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">70% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">60% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">50% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">40% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">30% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">20% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-          <span class="relative">10% <span class="w-full h-[1px] absolute left-10 -top-2 text-gray-400">_________________________</span></span>
-        </div>
-  
-        <!-- Bars -->
-        <div class="ml-16 absolute z-30 h-full flex items-end space-x-4">
-          <div class="w-10 h-[60%] bg-pink rounded-md"></div>
-          <div class="w-12 bg-blue h-[30%] rounded-md"></div>
-          <div class="w-12 bg-[#C3C3FF] h-[70%] rounded-md"></div>
+        <div class="w-full flex justify-between text-black text-sm">
+          <span>10%</span>
+          <span>20%</span>
+          <span>30%</span>
+          <span>40%</span>
+          <span>50%</span>
+          <span>60%</span>
+          <span>70%</span>
+          <span>80%</span>
+          <span>90%</span>
+          <span>100%</span>
         </div>
       </div>
     </div>
-  </template>
-  
+  </div>
+</template>
+
 <script setup>
-const currentYear = ref(new Date().getFullYear())
+const bars = [
+  { label: 'السادس الاعدادي', value: 10,  color: "#515151"},
+  { label: 'السادس الابتدائي', value: 10,  color: "#6563FF"},
+  { label: 'الثالث المتوسط', value: 80,  color: "#CF6EFC"}
+];
+
+// Calculate the total number of students
+const totalStudents = bars.reduce((sum, bar) => sum + bar.value, 0);
+
+// Calculate the percentage for each category
+bars.forEach(bar => {
+  bar.percentage = (bar.value / totalStudents) * 100;
+});
 </script>

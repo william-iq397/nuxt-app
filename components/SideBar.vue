@@ -22,12 +22,15 @@
             </NuxtLink>
 
             <!-- Logout -->
-            <div
-                @click="logout"
-                class="sidebar-item my-2 mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer"
-            >
-                <Icon name="ph:sign-out-light" :size="isSmallScreen ? '32' : '24'" color="white" />
-                <span v-if="!isSmallScreen" class="text-[15px] ml-4 font-bold">تسجيل الخروج</span>
+             <div class="flex flex-col mt-auto">
+                <NuxtLink to="/setting" class="sidebar-item my-2 py-2 mt-auto flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
+                    <Icon name="tabler:settings" :size="isSmallScreen ? '32' : '24'" color="white" />
+                    <span v-if="!isSmallScreen" class="text-[15px] ml-4 font-bold">الاعدادات</span>
+                </NuxtLink>
+                <div @click="logout" class="sidebar-item my-2 flex items-center flex-row-reverse hover:text-white hover:bg-primary gap-4 rounded-md px-4 duration-300 cursor-pointer">
+                    <Icon name="ph:sign-out-light" :size="isSmallScreen ? '32' : '24'" color="white" />
+                    <span v-if="!isSmallScreen" class="text-[15px] ml-4 font-bold">تسجيل الخروج</span>
+                </div>
             </div>
         </div>
     </div>

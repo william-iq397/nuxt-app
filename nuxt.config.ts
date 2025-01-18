@@ -12,6 +12,12 @@ export default defineNuxtConfig({
               href: 'https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap',
             },
           ],
+          script: [
+            {
+              src: 'https://cdn.jsdelivr.net/npm/apexcharts',
+              async: true,
+            }
+          ],
         },
       },
 
