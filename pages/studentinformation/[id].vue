@@ -5,7 +5,7 @@
             <div class="flex justify-between items-center">
                 <!-- Student Info -->
                 <div class="flex flex-col items-end">
-                    <h2 class="text-2xl font-bold text-gray-800">{{ student.student_name + store.students.length }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">{{ student.student_name }}</h2>
                     <p class="text-gray-500 text-sm" dir="rtl">رقم الطالب : {{ student.id }}</p>
                     <p class="text-gray-500 text-sm">الجنس : {{ student.gender }}</p>
                 </div>

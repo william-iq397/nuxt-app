@@ -198,7 +198,7 @@ export const useStudents = defineStore("useStudents", {
             await pb.collection("students").update(studentId, updatedData)
             // Optionally, refetch the updated data
             student = await pb.collection("students").getOne(studentId)
-            navigateTo('/students')
+            navigateTo(`/studentinformation/${studentId}`)
       } catch (error) {
         console.error("Error updating student info:", error)
         alert("Failed to update student information. Please try again.")
@@ -443,3 +443,6 @@ export const useStudents = defineStore("useStudents", {
     },
 )
 
+if (import.meta.hot) {
+    import.meta.hot.accept(acceptHMRUpdate(useStudents, import.meta.hot))
+}
