@@ -5,7 +5,7 @@
             <h1>لا يوجد طلبات تسجيل</h1>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto" v-else>
           <table class="table-auto border-collapse border border-gray-300 text-md xl:text-lg 2xl:text-2xl text-right min-w-full">
               <thead class="bg-gray-100">
               <tr>
