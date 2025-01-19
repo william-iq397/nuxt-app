@@ -24,14 +24,14 @@
 
         <!-- Information Table -->
         <div class="w-full max-w-3xl bg-white rounded-xl shadow-md " v-if="student && Object.keys(student).length > 0">
-            <table class="w-full border-collapse text-right my-8">
+            <table class="w-full border-collapse text-right" id="table">
                 <tbody>
                     <tr class="bg-[#C3C3FF]">
                         <td class="p-4 text-black font-semibold">{{ student.student_name }}</td>
                         <td class="p-4 font-medium">الاسم الكامل</td>
                     </tr>
                     <tr>
-                        <td class="p-4 text-black font-semibold">{{ new Date().getFullYear() - student.student_birthdate.split('-')[0] }}</td>
+                        <td class="p-4 text-black font-semibold">{{ calculateAge(student.student_birthdate) }}</td>
                         <td class="p-4 font-medium">العمر</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
@@ -41,6 +41,14 @@
                     <tr>
                         <td class="p-4 text-black font-semibold">{{ student.student_birthdate }}</td>
                         <td class="p-4 font-medium">تاريخ الولادة</td>
+                    </tr>
+                    <tr class="bg-[#C3C3FF]">
+                        <td class="p-4 font-medium">{{ student.phone_number }}</td>
+                        <td class="p-4 text-black font-semibold">رقم هاتف الطالب</td>
+                    </tr>
+                    <tr>
+                        <td class="p-4 text-black font-semibold">{{ student.academic_year }}</td>
+                        <td class="p-4 font-medium">السنة الدراسية</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
                         <td class="p-4 text-black font-semibold">{{ student.mother_name }}</td>
@@ -55,18 +63,26 @@
                         <td class="p-4 font-medium">المرحلة الدراسية</td>
                     </tr>
                     <tr>
+                        <td class="p-4 text-black font-semibold">{{ student.group }}</td>
+                        <td class="p-4 font-medium">الشبعة</td>
+                    </tr>
+                    <tr class="bg-[#C3C3FF]">
                         <td class="p-4 text-black font-semibold">{{ student.residancy_place }}</td>
                         <td class="p-4 font-medium">مكان السكن</td>
                     </tr>
-                    <tr class="bg-[#C3C3FF]">
+                    <tr>
                         <td class="p-4 text-black font-semibold">{{ student.does_student_has_disease }}</td>
                         <td class="p-4 font-medium">لدى الطالب امراض مزمنة</td>
+                    </tr>
+                    <tr  class="bg-[#C3C3FF]">
+                        <td class="p-4 text-black font-semibold">{{ student.disease_type }}</td>
+                        <td class="p-4 font-medium">نوع المرض</td>
                     </tr>
                     <tr>
                         <td class="p-4 text-black font-semibold">{{ student.father_name }}</td>
                         <td class="p-4 font-medium">اسم ولي امر الطالب</td>
                     </tr>
-                    <tr class="bg-[#C3C3FF]">
+                    <tr  class="bg-[#C3C3FF]">
                         <td class="p-4 text-black font-semibold">{{ student.relative_type }}</td>
                         <td class="p-4 font-medium">صلة القرابة</td>
                     </tr>
@@ -164,6 +180,24 @@ const fetchStudent = async (id) => {
 function print() {
     window.print();
 }
+
+function calculateAge(birthdate) {
+    const [birthYear, birthMonth] = birthdate.split('-').map(Number);
+    const today = new Date();
+    const currentYear = today.getFullYear();
+    const currentMonth = today.getMonth() + 1; // Months are 0-indexed
+
+    let ageYears = currentYear - birthYear;
+    let ageMonths = currentMonth - birthMonth;
+
+    if (ageMonths < 0) {
+    ageYears -= 1;
+    ageMonths += 12;
+    }
+
+    return `${ageYears} سنة`;
+}
+
 
 onMounted(() => {
     fetchStudent(studentId);

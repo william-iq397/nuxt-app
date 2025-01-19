@@ -10,6 +10,7 @@ export const useStudents = defineStore("useStudents", {
             gender: '',
             grade: '',
             group: '',
+            phone_number: '',
             blood_type: '',
             residancy_place: '',
             father_name: '',
@@ -24,6 +25,7 @@ export const useStudents = defineStore("useStudents", {
             disease_type: '',
             note: '',
             student_birthdate: '',
+            academic_year: '',
             student_id_photo: '',
             amount_paid: '',
             payment_method: '',
@@ -35,16 +37,18 @@ export const useStudents = defineStore("useStudents", {
           },
         teachers: [],
         teacher: {
-            teacher_name: '',
-            teacher_description: '',
-            teacher_image: '',
+          teacher_name: '',
+          gender: '',
+          grade: '',
+          class_number: '',
+          curriculum: '',
+          phone_number: '',
         },
 
         groups: [],
         grades: [],
         roles: [],
-
-        academicYears: [],
+        academic_years: [],
 
 
         filter: "",
@@ -112,7 +116,9 @@ export const useStudents = defineStore("useStudents", {
                 student_name: this.student.student_name,
                 gender: this.student.gender,
                 grade: this.student.grade,
+                group: this.student.group,
                 blood_type: this.student.blood_type,
+                phone_number: this.student.phone_number,
                 residancy_place: this.student.residancy_place,
                 father_name: this.student.father_name,
                 father_number: this.student.father_number,
@@ -130,6 +136,7 @@ export const useStudents = defineStore("useStudents", {
                 payment_method: this.student.payment_method,
                 discount_percentage: this.student.discount_percentage,
                 is_financial_information_filled: this.student.is_financial_information_filled,
+                academic_year: this.student.academic_year,
             }
 
             this.isValid()
@@ -170,43 +177,43 @@ export const useStudents = defineStore("useStudents", {
         },
 
         async updateStudentInfo(studentId, student) {
-          const pb = usePocketbase();
-
-          try {
-            // Prepare updated data from form values
-            const updatedData = {
-                student_name: student.student_name,
-                gender: student.gender,
-                grade: student.grade,
-                group: student.group,
-                blood_type: student.blood_type,
-                residancy_place: student.residancy_place,
-                father_name: student.father_name,
-                father_number: student.father_number,
-                father_profession: student.father_profession,
-                profession_work_place: student.profession_work_place,
-                relative_type: student.relative_type,
-                father_work_condition: student.father_work_condition,
-                mother_name: student.mother_name,
-                mother_profession: student.mother_profession,
-                does_student_has_disease: student.does_student_has_disease,
-                disease_type: student.disease_type,
-                note: student.note,
-                student_birthdate: student.student_birthdate,
-              } 
-            // Send the updated student data back to PocketBase
-            await pb.collection("students").update(studentId, updatedData)
-            // Optionally, refetch the updated data
-            student = await pb.collection("students").getOne(studentId)
-            navigateTo(`/studentinformation/${studentId}`)
-      } catch (error) {
-        console.error("Error updating student info:", error)
-        alert("Failed to update student information. Please try again.")
-      }
-
+            const pb = usePocketbase();
+            try {
+              // Prepare updated data from form values
+              const updatedData = {
+                  student_name: student.student_name,
+                  gender: student.gender,
+                  grade: student.grade,
+                  group: student.group,
+                  phone_number: student.phone_number,
+                  blood_type: student.blood_type,
+                  residancy_place: student.residancy_place,
+                  father_name: student.father_name,
+                  father_number: student.father_number,
+                  father_profession: student.father_profession,
+                  profession_work_place: student.profession_work_place,
+                  relative_type: student.relative_type,
+                  father_work_condition: student.father_work_condition,
+                  mother_name: student.mother_name,
+                  mother_profession: student.mother_profession,
+                  does_student_has_disease: student.does_student_has_disease,
+                  disease_type: student.disease_type,
+                  note: student.note,
+                  student_birthdate: student.student_birthdate,
+                  academic_year: student.academic_year,
+                } 
+              // Send the updated student data back to PocketBase
+              await pb.collection("students").update(studentId, updatedData)
+              // Optionally, refetch the updated data
+              student = await pb.collection("students").getOne(studentId)
+              navigateTo(`/studentinformation/${studentId}`)
+        } catch (error) {
+          console.error("Error updating student info:", error)
+          alert("Failed to update student information. Please try again.")
+        }
       },
 
-        async fetchAccountantStudents() {
+      async fetchAccountantStudents() {
           const pb = usePocketbase()
             try {
                 const students = await pb.collection('students').getFullList( {
@@ -221,102 +228,35 @@ export const useStudents = defineStore("useStudents", {
       async getActiveYearStudents() {
         const activeYear = await pb.collection('academic_years').getFirstListItem('is_active = true')
         const students = await pb.collection('students').getFullList({
-            filter: `registered_year = "${activeYear.id}"`,
+            filter: `academic_year = "${activeYear.id}"`, // if didn't work try to remove the id
         })
       },
 
-        async getAcademicYears() {
+        async fetchAcademicYears() {
           const pb = usePocketbase()
 
           try {
               const academicYears = await pb.collection('academic_years').getFullList()
-              this.academicYears = academicYears
+              this.academic_years = academicYears
               } catch (error) {
               console.error('Error fetching academic years:', error)
             }
         },
 
         async deleteStudent(id, table) {
-            const supabase = useSupabaseClient()
-            const { error } = await supabase
-                .from(table)
-                .delete()
-                .eq("id", id)
+            const pb = usePocketbase()
+            const student = await pb.collection(table).delete(id)
                 
-                this.fetchStudentsRequests()
-                this.fetchStudents()
+            this.fetchStudents()
         },
 
-        async updateStudent(id, student) {
-            const supabase = useSupabaseClient();
-        
-            const { data, error } = await supabase
-                .from('students')
-                .update({
-                    id: id,
-                    student_name: student.student_name,
-                    father_name: student.father_name,
-                    mother_name: student.mother_name,
-                    branch: student.branch,
-                    study_status: student.study_status,
-                    father_number: student.father_number,
-                    mother_number: student.mother_number,
-                    student_birthdate: student.student_birthdate,
-                    student_id_photo: student.student_id_photo,
-                })
-                .eq('id', id)
-                .select()
-
-            console.log("Student updated successfully:", data);
-        
-            this.fetchStudents();
-        },
-        
-
-            //accept student and delete him and refresh the page   
-        async acceptStudent(id) {
-            const supabase = useSupabaseClient();
-            
-            // Fetch the student data from the 'students-requests' table
-            const { data: studentData } = await supabase
-                .from("students_request")
-                .select("*")
-                .eq("id", id)
-                .single(); // Ensure we get a single record
-        
-            // Insert the fetched student data into the 'students' table
-            const { error: insertError } = await supabase
-                .from("students")
-                .insert(studentData);
-            // delete the student from request to table after inserting to students table
-            this.deleteStudent(id, 'students_request')
-            // Refresh the lists
-            this.fetchStudentsRequests();
-            this.fetchStudents();
-        },
-
-        // teachers functions
+        // fetch teachers functions
         async fetchTeachers() {
-            const supabase = useSupabaseClient();
+            const pb = usePocketbase();
         
             try {
-                const { data, error } = await supabase
-                    .from('teachers')
-                    .select("*")
-                    .order('created_at', { ascending: true });
-        
-                if (error) {
-                    console.error("Error fetching teachers:", error.message);
-                    return;
-                }
-        
-                // Handle empty data
-                if (data && data.length > 0) {
-                    this.teachers = data;
-                } else {
-                    console.warn("No teachers found. Displaying empty state.");
-                    this.teachers = []; // Set to an empty array to avoid errors
-                }
+              const teachers = pb.collection('teachers').getFullList();
+              this.teachers = teachers;
             } catch (err) {
                 console.error("Unexpected error fetching teachers:", err);
             }
@@ -324,22 +264,22 @@ export const useStudents = defineStore("useStudents", {
         
 
         async addTeacher() {
-            const supabase = useSupabaseClient();
-            const { data, error } = await supabase
-            .from('teachers')
-            .insert({
-                teacher_name: this.teacher.teacher_name,
-                teacher_description: this.teacher.teacher_description,
-                teacher_image: this.teacher.teacher_image,
-            })
+            const pb = usePocketbase();
+            const teacher = {
+              teacher_name: this.teacher.teacher_name,
+              gender: this.teacher.gender,
+              grade: this.teacher.grade,
+              class_number: this.teacher.class_number,
+              curriculum: this.teacher.curriculum,
+              phone_number: this.teacher.phone_number,
+            }
 
-            if(error) console.log("error" + error)
-
-            this.fetchTeachers()
-
-            this.teacher.teacher_name = ""
-            this.teacher.teacher_description = ""
-            this.teacher.teacher_image = ""
+            try {
+              const { id } = await pb.collection('teachers').create(teacher)
+              // navigateTo(`/teacherinformation/${id}`)
+            } catch (error) {
+              console.error("Error adding teacher:", error)
+            }
         },
 
         async deleteTeacher(id) {

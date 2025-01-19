@@ -188,16 +188,6 @@
                 />
               </div>
   
-              <!-- Note -->
-              <div>
-                <label class="block text-lg font-medium text-gray-700 mb-2">ملاحظات</label>
-                <textarea
-                  v-model="student.note"
-                  placeholder="أدخل ملاحظات"
-                  class="w-full p-3 rounded-lg border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
-                ></textarea>
-              </div>
-  
               <!-- Student Birthdate -->
               <div>
                 <label class="block text-lg font-medium text-gray-700 mb-2">تاريخ ميلاد الطالب</label>
@@ -206,6 +196,32 @@
                   v-model="student.student_birthdate"
                   class="w-full p-3 rounded-lg border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
                 />
+              </div>
+
+              <!-- studen phone number to sign in -->
+              <div>
+                <label class="block text-lg font-medium text-gray-700 mb-2">رقم هاتف الطالب</label>
+                  <div class="relative w-full">
+                      <input required type="number" id="student_number" class="text-right block rounded-lg px-2.5 py-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="student.phone_number"  />
+                  </div>
+              </div>
+
+              <!-- academic year -->
+            <div>
+                <label class="block text-lg font-medium text-gray-700 mb-2">السنة الدراسية</label>
+                <select id="academic_year" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="student.academic_year">
+                    <option v-for="academic_year in yearOptions" :key="academic_year" :value="academic_year">{{ academic_year }}</option>
+                </select>
+            </div>
+
+              <!-- Note -->
+              <div>
+                <label class="block text-lg font-medium text-gray-700 mb-2">ملاحظات</label>
+                <textarea
+                  v-model="student.note"
+                  placeholder="أدخل ملاحظات"
+                  class="w-full p-3 rounded-lg border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-lg"
+                ></textarea>
               </div>
   
               <!-- Student ID Photo -->
@@ -250,6 +266,8 @@ const student = reactive({
     gender: '',
     grade: '',
     group: '',
+    phone_number: '',
+    academic_year: '',
     blood_type: '',
     residancy_place: '',
     father_name: '',
@@ -274,6 +292,10 @@ const gradeOptions = computed(() => {
 const groupOptions = computed(() => {
     return [...new Set(store.groups.map((student) => student.group))]
 });
+
+const yearOptions = computed(() => {
+    return [...new Set(store.academic_years.map((student) => student.academic_year))]
+});
   
 const fetchStudent = async (id) => {
   try {
@@ -293,5 +315,6 @@ onMounted(() => {
     fetchStudent(studentId);
     store.fetchGroups()
     store.fetchGrades()
+    store.fetchAcademicYears()
 })
 </script>

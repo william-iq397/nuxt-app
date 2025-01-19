@@ -17,4 +17,12 @@
 import StudentsStatistics from '~/components/accountant/StudentsStatistics.vue';
 import MainStatistics from '~/components/MainStatistics.vue';
 import RegisterSection from '~/components/RegisterSection.vue';
+import { usePocketbase } from '~/pocketbase';
+
+
+const pb = usePocketbase()
+
+if(!pb.authStore.isValid){
+    navigateTo('/login')
+}
 </script>

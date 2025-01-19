@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center items-center w-full h-full relative">
+    <div class="flex justify-center items-center w-full min-h-screen relative">
         <!-- two colors in the background purple and white -->
         <div class="h-full w-1/2 bg-primary "></div>
         <div class="h-full w-1/2 bg-offwhite "></div>

@@ -16,10 +16,8 @@ import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 // TO DO 
-// add phone number to the addStudent to register with the app
-// add registrary year to addStudent, editStudentInformation
-// create table named academic_year, create another field for student with academic year
-// add academic_year to know the student academic year 
+// add middleware
+// add login to students_auth
 // add maximux student number to the each class
 // activate autoImport 
 // adjust print with css or tailwindcss
@@ -29,6 +27,8 @@ import { usePocketbase } from '~/pocketbase';
 // add father information headers (اختيار القرابة, حالة العمل)
 // adjust the font size font responsive to the addstudent page
 // make inputs required
+// API PERFORMANCE PAGINATION, DATA COMPRESSION GZIP, DATABASE CONNECTION POOLING, CACHING REDIS, ASYNCHRONOUS LOGGING
+// component to be removed StudentConfirmationButtons
 
 const route = useRoute()
 

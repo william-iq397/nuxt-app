@@ -3,7 +3,6 @@
         <StudentInformation/>
         <MotherInformation/>
         <ParentInformation/>
-        <!-- <PaymentInformation/> -->
         <StudentSaveButtons />
     </div>
 </template>
@@ -14,11 +13,4 @@ import MotherInformation from '~/components/AddStudentForm/MotherInformation.vue
 import ParentInformation from '~/components/AddStudentForm/ParentInformation.vue';
 import StudentConfirmationButtons from '~/components/AddStudentForm/StudentConfirmationButtons.vue';
 import StudentSaveButtons from '~/components/AddStudentForm/StudentSaveButtons.vue';
-import PaymentInformation from '~/components/AddStudentForm/PaymentInformation.vue';
-
-function log() {
-    console.log('Cancel clicked');
-}
-
-
 </script>
