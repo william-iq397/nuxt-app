@@ -15,7 +15,11 @@
 import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
-// TO DO 
+// TO DO
+// filter students by registered year
+// fix style for students, accountant table
+// validation for login, signup, add student, add teacher,  
+// authorization
 // add middleware
 // add login to students_auth
 // add maximux student number to the each class, group => grades table
