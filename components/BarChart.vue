@@ -7,7 +7,7 @@
           <h2 class="text-right text-xl font-semibold mb-4 p-2 rounded-lg bg-darkgray">الابتدائية</h2>
           <h2 class="text-right text-xl font-semibold mb-4 p-2 rounded-lg bg-pink">المتوسطة</h2>
         </div>
-        <h2 class="text-right text-xl font-semibold mb-4">تصنيف بنات الإمارات</h2>
+        <h2 class="text-right text-xl font-semibold mb-4">نسبة الصفوف المنتهية</h2>
       </div>
       <div class="flex flex-col items-center space-y-4">
         <div v-for="(bar, index) in bars" :key="index" class="flex justify-between w-full">

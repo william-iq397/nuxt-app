@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-cols-2 grid w-full 2xl:w-1/2 shadow-md">
+    <div class="grid-cols-2 grid w-full 2xl:w-1/2">
         <div class="py-6 mt-4 grid place-items-center px-2">
             <div id="student-pie-chart"></div>
         </div>

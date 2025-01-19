@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-full flex gap-4 text-right">
-        <div class="w-full flex flex-col justify-start gap-8 ">
+        <div class="w-full flex flex-col justify-start gap-8 mx-2">
             <AccountantStudentsStatistics/>
             <MainStatistics />
             <RegisterSection/>

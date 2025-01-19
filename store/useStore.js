@@ -255,7 +255,7 @@ export const useStudents = defineStore("useStudents", {
             const pb = usePocketbase();
         
             try {
-              const teachers = pb.collection('teachers').getFullList();
+              const teachers = await pb.collection('teachers').getFullList();
               this.teachers = teachers;
             } catch (err) {
                 console.error("Unexpected error fetching teachers:", err);

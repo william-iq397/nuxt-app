@@ -80,11 +80,11 @@ const links = [
         icon: 'mdi:briefcase-plus',
         text: 'اضافة استاذ',
     },
-    {
-        link: '/graduates',
-        icon: 'fa6-solid:user-graduate',
-        text: 'الخريجين',
-    },
+    // {
+    //     link: '/graduates',
+    //     icon: 'fa6-solid:user-graduate',
+    //     text: 'الخريجين',
+    // },
 ];
 
 // Reactive screen size check

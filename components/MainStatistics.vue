@@ -58,9 +58,6 @@
     transition: transform 0.2s ease-in-out;
   }
   
-  .stat-card:hover {
-    transform: translateY(-5px);
-  }
   
   .icon {
     font-size: 2.5rem;

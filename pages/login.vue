@@ -49,8 +49,6 @@ const handleLogin = async () => {
         pb.cancelAllRequests()
         const authData = await pb.collection('users').authWithPassword(useremail.value, password.value);
         
-        console.log('Login successful:', authData);
-
         // Redirect to another page
         navigateTo('/');
     } catch (err) {

@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto p-4" dir="rtl">
+    <div class="mx-auto p-4 w-full" dir="rtl">
         <!-- Page Header -->
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">إضافة أستاذ</h1>
 
@@ -34,27 +34,26 @@
                 <!-- Class Number -->
                 <div>
                     <label for="class_number" class="block text-gray-700 font-medium mb-2">عدد الصفوف</label>
-                    <input v-model="store.teacher.class_number" type="number" id="class_number" placeholder="رقم الصف"
-                    class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
+                    <input v-model="store.teacher.class_number" type="number" id="class_number" placeholder="رقم الصف" class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
                 </div>
 
                 <!-- Curriculum -->
                 <div>
                     <label for="curriculum" class="block text-gray-700 font-medium mb-2">المنهج الدراسي</label>
-                    <input v-model="store.teacher.curriculum" type="text" id="curriculum" placeholder="اسم المنهج"
-                    class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
+                    <input v-model="store.teacher.curriculum" type="text" id="curriculum" placeholder="اسم المنهج" class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
                 </div>
 
                 <!-- Phone Number -->
                 <div>
                     <label for="phone_number" class="block text-gray-700 font-medium mb-2">رقم الهاتف</label>
-                    <input v-model="store.teacher.phone_number" type="text" id="phone_number" placeholder="رقم الهاتف"
-                    class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
+                    <input v-model="store.teacher.phone_number" type="text" id="phone_number" placeholder="رقم الهاتف" class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
                 </div>
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition mt-6">إضافة</button>
+            <div class="w-1/3 mx-auto">
+                <button type="submit" class="w-full bg-primary text-white py-2 px-4 rounded-lg hover:bg-primary-dark transition mt-6">إضافة</button>
+            </div>
         </form>
     </div>
 </template>

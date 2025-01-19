@@ -18,7 +18,7 @@ import { usePocketbase } from '~/pocketbase';
 // TO DO 
 // add middleware
 // add login to students_auth
-// add maximux student number to the each class
+// add maximux student number to the each class, group => grades table
 // activate autoImport 
 // adjust print with css or tailwindcss
 // set accnntnt role, change ui stuff, remove extra code and imports and components
