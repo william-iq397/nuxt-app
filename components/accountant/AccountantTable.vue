@@ -77,22 +77,22 @@ import { useStudents } from '~/store/useStore';
 const store = useStudents()
 
 // Reactive state for filters and search
-const searchQuery = ref('');
-const selectedClass = ref();
-const selectedGroup = ref('');
-const filteredStudents = ref([]);
+const searchQuery = ref('')
+const selectedClass = ref()
+const selectedGroup = ref('')
+const filteredStudents = ref([])
 
-function onRefresh() {
-  store.fetchStudents()
-  store.fetchGroups()
-  store.fetchGrades()
+async function onRefresh() {
+  await store.fetchStudents()
+  await store.fetchGroups()
+  await store.fetchGrades()
   filteredStudents.value = store.students
 }
 
-onMounted(() => {
-  store.fetchStudents()
-  store.fetchGroups()
-  store.fetchGrades()
+onMounted(async() => {
+  await store.fetchStudents()
+  await store.fetchGroups()
+  await store.fetchGrades()
   filteredStudents.value = store.students // Ensure store.students is populated at this point
 });
 

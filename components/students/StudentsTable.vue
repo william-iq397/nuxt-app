@@ -90,17 +90,20 @@ const selectedClass = ref();
 const selectedGroup = ref('');
 const filteredStudents = ref([]);
 
-function onRefresh() {
-    store.fetchStudents();
-    filteredStudents.value = store.students;
+async function onRefresh() {
+    await store.fetchStudents();
+    await store.fetchGroups();
+    await store.fetchGrades();
 }
 
-onMounted(() => {
-    store.fetchStudents();
-    store.fetchGroups()
-    store.fetchGrades()
-    filteredStudents.value = store.students; // Ensure store.students is populated at this point
+
+onMounted(async () => {
+    await store.fetchStudents();
+    await store.fetchGroups();
+    await store.fetchGrades();
+    filteredStudents.value = store.students;
 });
+
 
 // Computed properties for unique class and group options
 const gradeOptions = computed(() => {

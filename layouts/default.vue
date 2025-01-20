@@ -16,6 +16,17 @@ import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 // TO DO
+// add sign up for the student to addStudent page
+// add employee name, employment section, salary, phone number, education degree
+// add to addTeacher salary => سعر المحاظرة عدد المحاظرات, الابتدائية راتب شهري, الاعدادية مقطوعة وعدد محاظرات و نسبة, المتوسطة على عدد المحاظرات
+// add عدد المراحل للأستاذ => عدد الصفوف كلهن
+// add الصف => الصف الاول, الصف الثاني, الصف الثالث, الصف الرابع, الصف الخامس, الصف السادس
+// add المرحلة الدراسية => ابتدائي متوسط اعدادي
+// add select input ابتدائي مختلطة, ثانوية بنين, ثانوية بنات also filter by these from the studentsTable
+// make manager add these from the DB roles, groups, classes, schools
+// print for student only, accountant only
+// user can access only ابتدائي مختلطة or ثانوية بنين or ثانوية بنات make manager add these from the backend
+// اضافة دفعات الطلاب
 // filter students by registered year
 // fix style for students, accountant table
 // validation for login, signup, add student, add teacher,  

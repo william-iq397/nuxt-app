@@ -69,8 +69,8 @@ const selectedClass = ref();
 const selectedGender = ref('');
 const filteredTeachers = ref([]);
 
-function onRefresh() {
-    store.fetchTeachers();
+async function onRefresh() {
+    await store.fetchTeachers();
     filteredTeachers.value = store.teachers;
 }
 
@@ -101,10 +101,10 @@ const filterResults = () => {
     
     
     
-onMounted(() => {
-    store.fetchTeachers();
-    store.fetchGroups()
-    store.fetchGrades()
+onMounted( async () => {
+    await store.fetchTeachers();
+    await store.fetchGroups()
+    await store.fetchGrades()
     filteredTeachers.value = store.teachers // Ensure store.teachers is populated at this point
 })
 // Watch for changes to search criteria and reapply filters

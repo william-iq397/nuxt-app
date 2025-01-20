@@ -5,7 +5,7 @@
             <div class="sidebar-item text-xl bg-primary border-l border-t rounded-md">
                 <div class="py-2 mt-1 flex justify-center lg:justify-start items-center flex-row-reverse rounded-lg hover:text-white hover:bg-primary gap-2">
                     <Icon name="heroicons-solid:academic-cap" class="text-white" :size="isSmallScreen ? '32' : '24'" />
-                    <h1 v-if="!isSmallScreen" class="font-bold text-[15px] ml-3 text-white">TailwindCSS</h1>
+                    <h6 v-if="!isSmallScreen" class="font-bold ml-3 text-white">مؤسسة المعين التعليمية</h6>
                 </div>
             </div>
 

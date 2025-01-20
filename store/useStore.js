@@ -2,8 +2,8 @@ import { acceptHMRUpdate, defineStore } from "pinia"
 import {usePocketbase} from './pocketbase.js'
 export const useStudents = defineStore("useStudents", {
     state: () => ({
-        students: [],
-        accountantStudents: [],
+        students: ref([]),
+        accountantStudents: ref([]),
         signleStudent: {},
         student: {
             student_name: '',
@@ -35,7 +35,7 @@ export const useStudents = defineStore("useStudents", {
             total_amount: '',
             is_financial_information_filled: false,
           },
-        teachers: [],
+        teachers: ref([]),
         teacher: {
           teacher_name: '',
           gender: '',
@@ -45,10 +45,10 @@ export const useStudents = defineStore("useStudents", {
           phone_number: '',
         },
 
-        groups: [],
-        grades: [],
-        roles: [],
-        academic_years: [],
+        groups: ref([]),
+        grades: ref([]),
+        roles: ref([]),
+        academic_years: ref([]),
 
 
         filter: "",
