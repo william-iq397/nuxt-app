@@ -16,20 +16,22 @@ import { useRoute } from 'vue-router';
 import { usePocketbase } from '~/pocketbase';
 
 // TO DO
-// add sign up for the student to addStudent page
-// add employee name, employment section, salary, phone number, education degree
-// add to addTeacher salary => سعر المحاظرة عدد المحاظرات, الابتدائية راتب شهري, الاعدادية مقطوعة وعدد محاظرات و نسبة, المتوسطة على عدد المحاظرات
-// add عدد المراحل للأستاذ => عدد الصفوف كلهن
-// add الصف => الصف الاول, الصف الثاني, الصف الثالث, الصف الرابع, الصف الخامس, الصف السادس
-// add المرحلة الدراسية => ابتدائي متوسط اعدادي
-// add select input ابتدائي مختلطة, ثانوية بنين, ثانوية بنات also filter by these from the studentsTable
-// make manager add these from the DB roles, groups, classes, schools
-// print for student only, accountant only
-// user can access only ابتدائي مختلطة or ثانوية بنين or ثانوية بنات make manager add these from the backend
-// اضافة دفعات الطلاب
+// in the manager dashboard make the manager give access to the users to the schools. (hard)
+// الاعدادي بفروع العلمي والادبي
+// add sign up for the student to addStudent page (easy)
+// add employee name, employment section, salary, phone number, education degree (easy)
+// add to addTeacher salary => سعر المحاظرة عدد المحاظرات, الابتدائية راتب شهري, الاعدادية مقطوعة وعدد محاظرات و نسبة, المتوسطة على عدد المحاظرات (hard)
+// add عدد المراحل للأستاذ => عدد الصفوف كلهن (ease)
+// add الصف => الصف الاول, الصف الثاني, الصف الثالث, الصف الرابع, الصف الخامس, الصف السادس to addStudent page (easy)
+// add المرحلة الدراسية => ابتدائي متوسط اعدادي (easy)
+// add select input ابتدائي مختلطة, ثانوية بنين, ثانوية بنات also filter by these from the studentsTable (easy)
+// make manager add these from the DB roles, groups, classes, schools (easy)
+// print for student only, accountant only (easy)
+// user can access only ابتدائي مختلطة or ثانوية بنين or ثانوية بنات make manager add these from the backend (hard)
+// اضافة دفعات الطلاب للأقساط (hard)
 // filter students by registered year
 // fix style for students, accountant table
-// validation for login, signup, add student, add teacher,  
+// validation for login, signup student, add student, add teacher,
 // authorization
 // add middleware
 // add login to students_auth

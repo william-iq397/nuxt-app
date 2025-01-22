@@ -1,4 +1,4 @@
- <template>
+<template>
     <div class="w-full">
         <StudentsTable/>
     </div> 
