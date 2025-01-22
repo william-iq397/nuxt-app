@@ -27,6 +27,7 @@ export const useStudents = defineStore("useStudents", {
             student_birthdate: '',
             academic_year: '',
             student_id_photo: '',
+            password: '',
             amount_paid: '',
             payment_method: '',
             payment_type: '',
@@ -143,7 +144,25 @@ export const useStudents = defineStore("useStudents", {
 
             const pb = usePocketbase()
             const { id } = await pb.collection('students').create(student);
+            this.signUpStudent()
             navigateTo(`/studentinformation/${id}`)
+        },
+
+        async signUpStudent() {
+          const pb = usePocketbase()
+
+          const studentAuthData = {
+            student_name: this.student.student_name,
+            phone_number: this.student.phone_number,
+            password: this.student.password,
+            passwordConfirm: this.student.password,
+          }
+
+          try {
+            const data = await pb.collection('students_auth').create(studentAuthData);
+            } catch (e) {
+              console.error("Unexpected error fetching roles:", e);
+            }
         },
 
         async updatePaymentInfo(id, student) {

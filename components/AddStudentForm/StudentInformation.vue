@@ -89,15 +89,6 @@
                 </div>
                 <!-- FOURTH LINE -->
                 <div class="w-full flex justify-end gap-4 my-4 ">
-                    <div class="w-2/6 h-full">
-                        <div class="relative w-full flex flex-col text-right">
-                            <p>رقم هاتف الطالب</p>
-                            <div class="relative w-full">
-                                <input required type="number" id="student_number" class="text-right block rounded-lg px-2.5 pb-2.5 pt-3 w-full text-sm text-black bg-transparent border border-gray-400 appearance-none  dark:border-gray-400 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" v-model="store.student.phone_number" />
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="w-2/6 h-full flex flex-col text-right">
                         <p>السنة الدراسية</p>
                         <select id="academic_year" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.academic_year">
