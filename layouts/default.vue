@@ -22,6 +22,8 @@ import Skeleton from '~/components/Skeleton.vue';
 import { useStudents } from '~/store/useStore';
 
 // TO DO
+// add functionality when i hit educational_level it will present me with the classes and groups in that level (easy)
+// make the teacher take multiple classes (easy)
 // الاعدادي بفروع العلمي والادبي
 // add employee name, employment section, salary, phone number, education degree (easy)
 // add to addTeacher salary => سعر المحاظرة عدد المحاظرات, الابتدائية راتب شهري, الاعدادية مقطوعة وعدد محاظرات و نسبة, المتوسطة على عدد المحاظرات (hard)
