@@ -196,7 +196,7 @@ export const useStudents = defineStore("useStudents", {
               payment_type: student.payment_type,
               receive_payment_date: student.receive_payment_date,
               total_amount: student.total_amount,
-              discount_percentage: student.discount_percentage,
+              discount_percentage: student.discount_percentage ? student.discount_percentage : 0,
               is_financial_information_filled: true,
             };
         

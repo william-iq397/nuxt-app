@@ -52,7 +52,7 @@
                 </thead>
                 <tbody class="text-md xl:text-lg 2xl:text-2xl">
                     <tr v-for="(student, index) in filteredStudents" :key="student.id" class="hover:bg-gray-50">
-                        <td class="px-4 py-2 border-b border-gray-300 flex items-center gap-2"> <Icon class="hidden xl:inline-block" name="material-symbols:account-circle-outline" color="black" /> {{ student.student_name }} </td>
+                        <td class="px-4 py-2 border-b border-gray-300"> <Icon class="hidden xl:inline-block translate-y-1" name="material-symbols:account-circle-outline" color="black" /> {{ student.student_name }} </td>
                         <td class="px-4 py-2 border-b border-gray-300 text-center">{{ student.gender }}</td>
                         <td class="px-4 py-2 border-b border-gray-300">{{ student.grade }}</td>
                         <td class="px-4 py-2 border-b border-gray-300 text-center">{{ student.group }}</td>
@@ -65,7 +65,10 @@
                                 {{ student.discount_percentage > 0 ? 'نعم' : 'لا' }}
                             </span>
                         </td>
-                        <td class="px-4 py-2 border-b border-gray-300">
+                        <td class="px-4 py-2 border-b border-gray-300 flex justify-evenly">
+                            <NuxtLink :to="`/studentinformation/${student.id}`">
+                                <Icon name="ic:outline-remove-red-eye" />
+                            </NuxtLink>
                             <NuxtLink :to="`/student/editstudentinformation/${student.id}`">
                                 <Icon name="tabler:settings" color="black" />
                             </NuxtLink>

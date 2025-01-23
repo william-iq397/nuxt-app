@@ -38,9 +38,9 @@
               <thead class="bg-gray-100">
               <tr>
                   <th class="px-4 py-2 border-b border-gray-300">الاسم</th>
-                  <th class="px-4 py-2 border-b border-gray-300">الجنس</th>
+                  <th class="px-4 py-2 border-b border-gray-300 text-center">الجنس</th>
                   <th class="px-4 py-2 border-b border-gray-300">الصف</th>
-                  <th class="px-4 py-2 border-b border-gray-300">الشعبة</th>
+                  <th class="px-4 py-2 border-b border-gray-300 text-center">الشعبة</th>
                   <th class="px-4 py-2 border-b border-gray-300">نوع الدفع</th>
                   <th class="px-4 py-2 border-b border-gray-300">المبلغ المتبقي</th>
                   <th class="px-4 py-2 border-b border-gray-300">خصم</th>
@@ -49,16 +49,16 @@
               </thead>
               <tbody>
                   <tr v-for="(student, index) in filteredStudents" :key="student.id" class="hover:bg-gray-50">
-                      <td class="px-4 py-2 border-b border-gray-300 flex items-center gap-2">
-                          <Icon class="hidden xl:inline-block" name="material-symbols:account-circle-outline" color="black" /> {{ student.student_name }}
+                      <td class="px-4 py-2 border-b border-gray-300">
+                          <Icon class="hidden xl:inline-block translate-y-1" name="material-symbols:account-circle-outline" color="black" /> {{ student.student_name }}
                       </td>
-                      <td class="px-4 py-2 border-b border-gray-300">{{ student.gender }}</td>
+                      <td class="px-4 py-2 border-b border-gray-300 text-center">{{ student.gender }}</td>
                       <td class="px-4 py-2 border-b border-gray-300">{{ student.grade }}</td>
-                      <td class="px-4 py-2 border-b border-gray-300">{{ student.group }}</td>
+                      <td class="px-4 py-2 border-b border-gray-300 text-center">{{ student.group }}</td>
                       <td class="px-4 py-2 border-b border-gray-300">{{ student.payment_type }}</td>
                       <td class="px-4 py-2 border-b border-gray-300 text-red-500">IQD{{ student.amount_paid }}</td>
                       <td class="px-4 py-2 border-b border-gray-300"><span class="px-2 py-1 text-xs rounded-full" :class="{'bg-green-100 text-green-600': student.discount_percentage > 0, 'bg-red-100 text-red-600': student.discount_percentage <= 0 }">{{ student.discount_percentage > 0 ? 'نعم' : 'لا' }}</span></td>
-                      <td class="px-4 py-2 border-b border-gray-300 flex justify-evenly ">
+                      <td class="px-4 py-2 border-b border-gray-300 flex justify-evenly">
                         <NuxtLink :to="`/studentinformation/${student.id}`">
                           <Icon name="ic:outline-remove-red-eye" />
                         </NuxtLink>
