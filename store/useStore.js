@@ -51,6 +51,7 @@ export const useStudents = defineStore("useStudents", {
         roles: ref([]),
         academic_years: ref([]),
 
+        isLoading: true,
 
         filter: "",
     }),
@@ -59,7 +60,11 @@ export const useStudents = defineStore("useStudents", {
         getStudents: (state) => state.students,
     },
     actions: {
-    // fetch students requests
+    
+    async setLoading(value) {
+        setTimeout(() =>  this.isLoading = value, 1000) 
+    },
+      // fetch students requests
 
     async fetchStudent(id) {
         const pb = usePocketbase()
@@ -164,6 +169,21 @@ export const useStudents = defineStore("useStudents", {
               console.error("Unexpected error fetching roles:", e);
             }
         },
+
+        // PLAY AROUND WITH THIS 
+        // const studentId = "student_id"; // Replace with the actual student ID
+        // const newPayment = {
+        //   semester: "Spring 2025",
+        //   amount: 400,
+        //   date: new Date().toISOString()
+        // };
+        // // Fetch the student's current payments
+        // const student = await pb.collection("students").getOne(studentId);
+        // const updatedPayments = student.payments ? [...student.payments, newPayment] : [newPayment];
+        // // Update the record
+        // await pb.collection("students").update(studentId, {
+        //   payments: updatedPayments
+        // });
 
         async updatePaymentInfo(id, student) {
           const pb = usePocketbase();
