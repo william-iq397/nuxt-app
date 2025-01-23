@@ -26,6 +26,7 @@ export const useStudents = defineStore("useStudents", {
             note: '',
             student_birthdate: '',
             academic_year: '',
+            educational_level: '',
             student_id_photo: '',
             password: '',
             amount_paid: '',
@@ -189,31 +190,45 @@ export const useStudents = defineStore("useStudents", {
           const pb = usePocketbase();
         
           try {
-            // Prepare updated data from form values
-            const updatedData = {
+            // Fetch the current student record
+            const currentStudent = await pb.collection('students').getOne(id);
+        
+            // Ensure `payments` is initialized as an array
+            const currentPayments = Array.isArray(currentStudent.payments) ? currentStudent.payments : [];
+        
+            // Create a new payment object
+            const newPayment = {
+              amount: student.amount_paid,
+              date: student.receive_payment_date,
+            };
+        
+            // Add the new payment to the existing payments array
+            const updatedPayments = [...currentPayments, newPayment];
+        
+            // Update the student record in PocketBase
+            await pb.collection('students').update(id, {
+              payments: updatedPayments,
               payment_method: student.payment_method,
               amount_paid: student.amount_paid,
               payment_type: student.payment_type,
               receive_payment_date: student.receive_payment_date,
               total_amount: student.total_amount,
-              discount_percentage: student.discount_percentage ? student.discount_percentage : 0,
+              discount_percentage: student.discount_percentage || 0,
               is_financial_information_filled: true,
-            };
+            });
         
-            // Send the updated student data back to PocketBase
-            await pb.collection("students").update(id, updatedData);
-        
-            // Optionally, refetch the updated data
-            student = await pb.collection("students").getOne(id);
+            // Optionally refetch the list of students
+            this.fetchStudents();
         
             // Navigate to the updated student's information page
             navigateTo(`/studentinformation/${id}`);
-            this.fetchStudents()
           } catch (error) {
             console.error("Error updating student payment info:", error);
             alert("Failed to update student payment information. Please try again.");
           }
         },
+        
+        
 
         async updateStudentInfo(studentId, student) {
             const pb = usePocketbase();

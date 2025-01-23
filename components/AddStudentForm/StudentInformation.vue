@@ -96,6 +96,17 @@
                         </select>
                     </div>
                 </div>
+              
+                <div class="w-full flex justify-end gap-4 my-4 ">
+                    <div class="w-2/6 h-full flex flex-col text-right">
+                        <p>المرحلة الدراسية</p>
+                        <select id="educational_level" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.educational_level">
+                            <option value="الابتدائية">الابتدائية</option>
+                            <option value="المتوسطة">المتوسطة</option>
+                            <option value="الاعدادية">الاعدادية</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <!-- input image field -->

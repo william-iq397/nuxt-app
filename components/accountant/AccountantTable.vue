@@ -56,7 +56,7 @@
                       <td class="px-4 py-2 border-b border-gray-300">{{ student.grade }}</td>
                       <td class="px-4 py-2 border-b border-gray-300 text-center">{{ student.group }}</td>
                       <td class="px-4 py-2 border-b border-gray-300">{{ student.payment_type }}</td>
-                      <td class="px-4 py-2 border-b border-gray-300 text-red-500">IQD{{ student.amount_paid }}</td>
+                      <td class="px-4 py-2 border-b border-gray-300 text-red-500"><span v-if="Array.isArray(student.payments)">IQD </span>{{ student.payments && Array.isArray(student.payments) && student.payments.length > 0  ? new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(student.payments.reduce((sum, payment) => sum + (payment.amount || 0), 0)) : 'لا يوجد'}}</td>
                       <td class="px-4 py-2 border-b border-gray-300"><span class="px-2 py-1 text-xs rounded-full" :class="{'bg-green-100 text-green-600': student.discount_percentage > 0, 'bg-red-100 text-red-600': student.discount_percentage <= 0 }">{{ student.discount_percentage > 0 ? 'نعم' : 'لا' }}</span></td>
                       <td class="px-4 py-2 border-b border-gray-300 flex justify-evenly">
                         <NuxtLink :to="`/studentinformation/${student.id}`">

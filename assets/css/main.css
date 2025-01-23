@@ -85,3 +85,8 @@ button,
 input {
     @apply text-base  lg:text-lg xl:text-xl;
 }
+
+
+input[type="number"]::-webkite-inner-spin-button {
+    display: none;
+}

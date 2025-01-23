@@ -5,7 +5,7 @@
             <div class="flex justify-between items-center">
                 <!-- Student Info -->
                 <div class="flex flex-col items-end">
-                    <h2 class="text-2xl font-bold text-gray-800">{{ student.student_name }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">{{ student.student_name }} {{ Array.isArray(student.payments) ? student.payments.length : 0 }}</h2>
                     <p class="text-gray-500 text-sm" dir="rtl">رقم الطالب : {{ student.id }}</p>
                     <p class="text-gray-500 text-sm">الجنس : {{ student.gender }}</p>
                 </div>
@@ -122,13 +122,13 @@
                     <tr>
                         <td v-if="!student.is_financial_information_filled"></td>
                         <td class="p-4 text-black font-semibold" v-else>{{ new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
-                             student.amount_paid ? student.amount_paid : 'لا يوجد') }}</td>
+                             student.payments ?  (Array.isArray(student.payments) ? student.payments.reduce((sum, payment) => sum + (payment.amount || 0), 0) : 0) : 'لا يوجد') }}</td>
                         <td class="p-4 font-medium">المبلغ المدفوع</td>
                     </tr>
                     <tr class="bg-[#C3C3FF]">
                         <td v-if="!student.is_financial_information_filled"></td>
                         <td class="p-4 text-black font-semibold" v-else>{{  new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(
-                            student.amount_paid ? (student.total_amount - (student.total_amount * (student.discount_percentage / 100))) - student.amount_paid : '1300000')}}
+                            student.amount_paid ? (student.total_amount - (student.total_amount * (student.discount_percentage / 100))) - (student.payments.reduce((sum, payment) => sum + (payment.amount || 0), 0)) : '1300000')}}
                         </td>
                         <td class="p-4 font-medium">المبلغ المتبقي</td>
                     </tr>
@@ -196,6 +196,14 @@ function calculateAge(birthdate) {
     }
 
     return `${ageYears} سنة`;
+}
+
+function totalPayments() {
+    // Check if payments is an array and sum all amounts
+    if (Array.isArray(student.payments)) {
+    return student.payments.reduce((sum, payment) => sum + (payment.amount || 0), 0);
+    }
+    return 0; // Return 0 if payments is not an array
 }
 
 

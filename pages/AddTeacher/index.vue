@@ -4,7 +4,7 @@
         <h1 class="text-2xl font-bold text-gray-800 mb-6 text-center">إضافة أستاذ</h1>
 
         <!-- Add Teacher Form -->
-        <form @submit.prevent="store.addTeacher" class="space-y-8 bg-white p-6 rounded-lg shadow-md">
+        <form @submit.prevent="store.addTeacher" class="space-y-8 p-6 rounded-lg shadow-md">
             <!-- Grid Layout for Form Fields -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- Teacher Name -->

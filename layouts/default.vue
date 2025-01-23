@@ -22,14 +22,13 @@ import Skeleton from '~/components/Skeleton.vue';
 import { useStudents } from '~/store/useStore';
 
 // TO DO
-// update updatePaymentInfo function so only the JSON is updated
-// in the manager dashboard make the manager give access to the users to the schools. (hard)
 // الاعدادي بفروع العلمي والادبي
 // add employee name, employment section, salary, phone number, education degree (easy)
 // add to addTeacher salary => سعر المحاظرة عدد المحاظرات, الابتدائية راتب شهري, الاعدادية مقطوعة وعدد محاظرات و نسبة, المتوسطة على عدد المحاظرات (hard)
 // add عدد المراحل للأستاذ => عدد الصفوف كلهن (ease)
 // add الصف => الصف الاول, الصف الثاني, الصف الثالث, الصف الرابع, الصف الخامس, الصف السادس to addStudent page (easy)
 // add المرحلة الدراسية => ابتدائي متوسط اعدادي (easy)
+// in the manager dashboard make the manager give access to the users to the schools. by pushing the same school in the school_type (hard)
 // add select input ابتدائي مختلطة, ثانوية بنين, ثانوية بنات also filter by these from the studentsTable (easy)
 // make manager add these from the DB , groups, classes, schools (easy)
 // print for student only, accountant only (easy)
