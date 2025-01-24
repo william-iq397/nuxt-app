@@ -48,10 +48,8 @@
 
                     <div class="w-2/6 h-full text-right">
                         <p>المرحلة الدراسية</p>
-                        <select id="grade" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.grade">
-                            <option value="السادس الاعدادي">السادس الاعدادي</option>
-                            <option value="الثالث متوسط">الثالث متوسط</option>
-                            <option value="السادس الابتدائي">السادس الابتدائي</option>
+                        <select  id="grade" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.grade">
+                            <option v-for="grade in store.availableGrades" :key="grade.id" :value="grade.grade">{{ grade.grade }}</option>
                         </select>
                     </div>
 
@@ -100,10 +98,8 @@
                 <div class="w-full flex justify-end gap-4 my-4 ">
                     <div class="w-2/6 h-full flex flex-col text-right">
                         <p>المرحلة الدراسية</p>
-                        <select id="educational_level" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.educational_level">
-                            <option value="الابتدائية">الابتدائية</option>
-                            <option value="المتوسطة">المتوسطة</option>
-                            <option value="الاعدادية">الاعدادية</option>
+                        <select @change="handleEducationalLevelChange" id="educational_level" class="text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2 dark:border-gray-400 dark:placeholder-gray-400 bg-transparent dark:focus:ring-blue-500 dark:focus:border-blue-500" v-model="store.student.educational_level">
+                            <option v-for="edu in store.educationalLevels" :data-id="edu.educational_level" :key="edu.id" :value="edu.educational_level">{{ edu.educational_level }}</option>
                         </select>
                     </div>
                 </div>
@@ -159,8 +155,17 @@ function handleImageUpload(event) {
   }
 }
 
+async function handleEducationalLevelChange(event) {
+    const selectedOption = event.target.selectedOptions[0];
+    const selectedId = selectedOption.getAttribute('data-id'); // Get the id here
+    
+    // You can now use selectedId to fetch the grades
+    console.log(selectedId);
+    await store.fetchGradesbyEducationalLevel(selectedId); // Example of using the selectedId
+}
 
 onMounted(() => {
+    store.fetchEducationalLevels()
     store.fetchGrades()
     store.fetchGroups()
     store.fetchAcademicYears()

@@ -47,6 +47,8 @@ export const useStudents = defineStore("useStudents", {
           phone_number: '',
         },
 
+        educationalLevels: [],  
+        availableGrades: [],
         groups: ref([]),
         grades: ref([]),
         roles: ref([]),
@@ -65,6 +67,28 @@ export const useStudents = defineStore("useStudents", {
     async setLoading(value) {
         setTimeout(() =>  this.isLoading = value, 1000) 
     },
+
+    async fetchEducationalLevels() {
+      const pb = usePocketbase();
+       try {
+        const educationalLevels = await pb.collection('schools').getFullList();
+        this.educationalLevels = educationalLevels
+       } catch(e) {
+        console.log(e)
+       }
+      },
+
+    async fetchGradesbyEducationalLevel(educationalLevelId) {
+      const pb = usePocketbase();
+        try {
+          const grades = await pb.collection('grades').getFullList({filter: `educational_level="${String(educationalLevelId)}"`});
+          console.log("grades : " + grades)
+          this.availableGrades = grades;
+        } catch(e) {
+          console.log(e)
+        }
+    },
+
       // fetch students requests
 
     async fetchStudent(id) {
@@ -86,23 +110,22 @@ export const useStudents = defineStore("useStudents", {
 
     async fetchGroups() {
       const pb = usePocketbase();
-    
       try {
-          const groups = await pb.collection('groups').getFullList();
-          this.groups = groups;
-      } catch (err) {
-          console.error("Unexpected error fetching groups:", err);
-      }
+        const groups = await pb.collection('groups').getFullList();
+        this.groups = groups;
+      } catch (error) {
+        console.error("Unexpected error fetching groups:", error);
+        }
     },
 
     async fetchGrades() {
       const pb = usePocketbase();
-    
       try {
-          const grades = await pb.collection('grades').getFullList();
-          this.grades = grades;
-      } catch (err) {
-          console.error("Unexpected error fetching grades:", err);
+        const grades = await pb.collection('grades').getFullList();
+        this.grades = grades;
+      }
+      catch (error) {
+        console.error("Unexpected error fetching grades:", error);
       }
     },
 
